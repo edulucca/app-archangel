@@ -1,13 +1,52 @@
 package br.edu.infnet.apparchangel.model.domain;
 
-public class Crime {
-    public Integer nrVitimas;
-    public Integer nrSuspeitos;
-    public boolean armaBranca;
-    public boolean armaDeFogo;
+public class Crime extends Crise{
+    private Integer nrVitimas;
+    private Integer nrSuspeitos;
+    private boolean armaBranca;
+    private boolean armaDeFogo;
+
+    public Crime(Integer nrVitimas, Integer nrSuspeitos, boolean armaBranca, boolean armaDeFogo) {
+        this.nrVitimas = nrVitimas;
+        this.nrSuspeitos = nrSuspeitos;
+        this.armaBranca = armaBranca;
+        this.armaDeFogo = armaDeFogo;
+    }
+
+    public Integer getNrVitimas() {
+        return nrVitimas;
+    }
+
+    public void setNrVitimas(Integer nrVitimas) {
+        this.nrVitimas = nrVitimas;
+    }
+
+    public Integer getNrSuspeitos() {
+        return nrSuspeitos;
+    }
+
+    public void setNrSuspeitos(Integer nrSuspeitos) {
+        this.nrSuspeitos = nrSuspeitos;
+    }
+
+    public boolean isArmaBranca() {
+        return armaBranca;
+    }
+
+    public void setArmaBranca(boolean armaBranca) {
+        this.armaBranca = armaBranca;
+    }
+
+    public boolean isArmaDeFogo() {
+        return armaDeFogo;
+    }
+
+    public void setArmaDeFogo(boolean armaDeFogo) {
+        this.armaDeFogo = armaDeFogo;
+    }
 
     @Override
     public String toString() {
-        return nrVitimas + ";" + nrSuspeitos + ";" + armaBranca + ";" + armaDeFogo;
+        return nrVitimas + ";" + nrSuspeitos + ";" + armaBranca + ";" + armaDeFogo + ";" + super.toString();
     }
 }

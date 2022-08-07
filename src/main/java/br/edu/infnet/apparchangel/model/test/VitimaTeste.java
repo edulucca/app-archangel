@@ -11,22 +11,13 @@ public class VitimaTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("#Vítima");
-        Vitima v1 = new Vitima();
-        v1.nome = "Fernanda";
-        v1.idade = "25";
-        v1.nomeDaMae = "Josélia";
+        Vitima v1 = new Vitima("Fernanda", "Josélia", "25");
         System.out.println(v1);
 
-        Vitima v2 = new Vitima();
-        v2.nome = "Sandra";
-        v2.idade = "42";
-        v2.nomeDaMae = "Roberta";
+        Vitima v2 = new Vitima("Sandra", "Roberta", "42");
         System.out.println(v2);
 
-        Vitima v3 = new Vitima();
-        v3.nome = "Carlos";
-        v3.idade = "18";
-        v3.nomeDaMae = "Brenda";
+        Vitima v3 = new Vitima("Carlos", "Brenda","18");
         System.out.println(v3);
     }
 }

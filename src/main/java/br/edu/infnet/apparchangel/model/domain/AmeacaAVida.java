@@ -13,6 +13,10 @@ public class AmeacaAVida extends Crise{
         this.statusVitima = statusVitima;
     }
 
+    //Métodos da classe
+
+
+    //Getter and Setter
     public Integer getNrVitima() {
         return nrVitima;
     }
@@ -35,6 +39,13 @@ public class AmeacaAVida extends Crise{
 
     public void setStatusVitima(List<String> statusVitima) {
         this.statusVitima = statusVitima;
+    }
+
+    //
+    @Override
+    public void impressao() {
+        System.out.println("#AmeacaAVida");
+        System.out.println(this);
     }
 
     @Override

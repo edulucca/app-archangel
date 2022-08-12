@@ -46,6 +46,12 @@ public class Crime extends Crise{
     }
 
     @Override
+    public void impressao() {
+        System.out.println("#Crime");
+        System.out.println(this);
+    }
+
+    @Override
     public String toString() {
         return nrVitimas + ";" + nrSuspeitos + ";" + armaBranca + ";" + armaDeFogo + ";" + super.toString();
     }

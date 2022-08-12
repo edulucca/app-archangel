@@ -10,9 +10,9 @@ public class PatrimonioTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("#Patrimonio");
+        AppEmergencia app = new AppEmergencia("PATRIMONIO EM RISCO NESTE MOMENTO");
         Patrimonio p1 = new Patrimonio(2,"Carro", "Fogo");
-        System.out.println(p1);
+        app.relatorio(p1);
 
         Patrimonio p2 = new Patrimonio(1,"Casa", "Praga");
         System.out.println(p2);

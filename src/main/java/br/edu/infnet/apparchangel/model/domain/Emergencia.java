@@ -37,6 +37,10 @@ public class Emergencia {
         this.dataHora = dataHora;
     }
 
+    public void impressao(){
+        System.out.println("#Emergencia");
+        System.out.println(this);
+    }
     @Override
     public String toString() {
         return localizacao + ";" + status + ";" + dataHora;

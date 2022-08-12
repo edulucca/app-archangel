@@ -15,18 +15,21 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("#AmeacaAVida");
+        AppEmergencia app = new AppEmergencia("ATENCAO!!! EMERGENCIA INICIADA!");
+
+
         AmeacaAVida a1 = new AmeacaAVida(3, "Fratura exposta", new ArrayList<String>());
         a1.getStatusVitima().add("Acordada");
-        System.out.println(a1);
+        app.relatorio(a1);
+
 
         AmeacaAVida a2 = new AmeacaAVida(2, "Hemorragia", new ArrayList<String>());
-        a1.getStatusVitima().add("Em Choque");
+        a2.getStatusVitima().add("Em Choque");
 
         System.out.println(a2);
 
         AmeacaAVida a3 = new AmeacaAVida(1, "Escoriações", new ArrayList<String>());
-        a1.getStatusVitima().add("Estável");
+        a3.getStatusVitima().add("Estável");
 
         System.out.println(a3);
     }

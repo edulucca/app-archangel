@@ -35,6 +35,11 @@ public class Requisitante{
         this.telefone = telefone;
     }
 
+    public void impressao(){
+        System.out.println("#Requisitante");
+        System.out.println(this);
+    }
+
     @Override
     public String toString() {
         return nome + ";" + cpf + ";" + telefone;

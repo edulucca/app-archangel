@@ -36,6 +36,12 @@ public class Patrimonio extends Crise{
     }
 
     @Override
+    public void impressao() {
+        System.out.println("#Patrimonio");
+        System.out.println(this);
+    }
+
+    @Override
     public String toString() {
         return nrPatrimonio + ";" + tipo + ";" + agenteDeRisco + ";" + super.toString();
     }

@@ -1,10 +1,14 @@
 package br.edu.infnet.apparchangel.model.domain;
 
-public class Crise {
+public abstract class Crise {
     private Integer escalaDeRisco;
     private String nome;
     private String descricao;
 
+    //Métodos da classe
+    public abstract void impressao();
+
+    //Getters and Setters
     public Integer getEscalaDeRisco() {
         return escalaDeRisco;
     }

@@ -1,13 +1,15 @@
 package br.edu.infnet.apparchangel.model.domain;
 
-public abstract class Crise {
+import br.edu.infnet.apparchangel.interfaces.IPrinter;
+
+public abstract class Crise implements IPrinter{
     private Integer escalaDeRisco;
     private String nome;
     private String descricao;
 
     //Métodos da classe
-    public abstract void impressao();
-
+    //public abstract void impressao();
+    public abstract String definirEscalaDeRisco();
     //Getters and Setters
     public Integer getEscalaDeRisco() {
         return escalaDeRisco;

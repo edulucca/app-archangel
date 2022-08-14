@@ -44,6 +44,17 @@ public class Crime extends Crise{
     public void setArmaDeFogo(boolean armaDeFogo) {
         this.armaDeFogo = armaDeFogo;
     }
+    /*
+    @Override
+    public void impressao() {
+        System.out.println("#Crime");
+        System.out.println(this);
+    }
+    */
+    @Override
+    public String toString() {
+        return nrVitimas + ";" + nrSuspeitos + ";" + armaBranca + ";" + armaDeFogo + ";" + super.toString();
+    }
 
     @Override
     public void impressao() {
@@ -52,7 +63,18 @@ public class Crime extends Crise{
     }
 
     @Override
-    public String toString() {
-        return nrVitimas + ";" + nrSuspeitos + ";" + armaBranca + ";" + armaDeFogo + ";" + super.toString();
+    public String definirEscalaDeRisco() {
+        if(super.getEscalaDeRisco() == 1){
+            return "Risco Baixo";
+        }
+        else if(super.getEscalaDeRisco() == 2){
+            return "Risco Médio";
+        }
+        else if (super.getEscalaDeRisco() == 3){
+            return "Risco Alto";
+        }
+        else{
+            return "Escala de risco não iniciada";
+        }
     }
 }

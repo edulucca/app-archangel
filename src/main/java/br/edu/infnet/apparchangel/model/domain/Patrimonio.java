@@ -34,6 +34,17 @@ public class Patrimonio extends Crise{
     public void setAgenteDeRisco(String agenteDeRisco) {
         this.agenteDeRisco = agenteDeRisco;
     }
+    /*
+    @Override
+    public void impressao() {
+        System.out.println("#Patrimonio");
+        System.out.println(this);
+    }
+    */
+    @Override
+    public String toString() {
+        return nrPatrimonio + ";" + tipo + ";" + agenteDeRisco + ";" + super.toString();
+    }
 
     @Override
     public void impressao() {
@@ -42,7 +53,7 @@ public class Patrimonio extends Crise{
     }
 
     @Override
-    public String toString() {
-        return nrPatrimonio + ";" + tipo + ";" + agenteDeRisco + ";" + super.toString();
+    public String definirEscalaDeRisco() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

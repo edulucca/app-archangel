@@ -41,7 +41,18 @@ public class AmeacaAVida extends Crise{
         this.statusVitima = statusVitima;
     }
 
-    //
+    /*
+    @Override
+    public void impressao() {
+        System.out.println("#AmeacaAVida");
+        System.out.println(this);
+    }
+    */
+    @Override
+    public String toString() {
+        return nrVitima + ";" + tipoFerimento + ";" + statusVitima + super.toString();
+    }
+
     @Override
     public void impressao() {
         System.out.println("#AmeacaAVida");
@@ -49,7 +60,18 @@ public class AmeacaAVida extends Crise{
     }
 
     @Override
-    public String toString() {
-        return nrVitima + ";" + tipoFerimento + ";" + statusVitima + super.toString();
+    public String definirEscalaDeRisco() {
+        if(super.getEscalaDeRisco() == 1){
+            return "Risco Baixo";
+        }
+        else if(super.getEscalaDeRisco() == 2){
+            return "Risco Médio";
+        }
+        else if (super.getEscalaDeRisco() == 3){
+            return "Risco Alto";
+        }
+        else{
+            return "Escala de risco não iniciada";
+        }
     }
 }

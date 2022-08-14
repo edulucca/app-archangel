@@ -1,6 +1,8 @@
 package br.edu.infnet.apparchangel.model.domain;
 
-public class Requisitante{
+import br.edu.infnet.apparchangel.interfaces.IPrinter;
+
+public class Requisitante implements IPrinter{
     private String nome;
     private String cpf;
     private String telefone;
@@ -34,14 +36,21 @@ public class Requisitante{
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
+    /*
     public void impressao(){
         System.out.println("#Requisitante");
         System.out.println(this);
     }
-
+    */
+    
     @Override
     public String toString() {
         return nome + ";" + cpf + ";" + telefone;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("#Requisitante");
+        System.out.println(this);
     }
 }

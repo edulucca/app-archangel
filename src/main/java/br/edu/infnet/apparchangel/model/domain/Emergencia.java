@@ -1,8 +1,9 @@
 package br.edu.infnet.apparchangel.model.domain;
 
+import br.edu.infnet.apparchangel.interfaces.IPrinter;
 import java.time.LocalDateTime;
 
-public class Emergencia {
+public class Emergencia implements IPrinter{
     private String localizacao;
     private String status;
     private LocalDateTime dataHora;
@@ -36,13 +37,20 @@ public class Emergencia {
     public void setDataHora(LocalDateTime dataHora) {
         this.dataHora = dataHora;
     }
-
+    /*
     public void impressao(){
         System.out.println("#Emergencia");
         System.out.println(this);
     }
+    */
     @Override
     public String toString() {
         return localizacao + ";" + status + ";" + dataHora;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("#Emergencia");
+        System.out.println(this);
     }
 }

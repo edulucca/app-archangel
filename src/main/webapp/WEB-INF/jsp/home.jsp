@@ -14,28 +14,28 @@ pageEncoding="UTF-8"%>
         <div class="collapse navbar-collapse" id="mynavbar">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">AmeacaAVida</a>
+                    <a class="nav-link" href="/ameacaavida/lista">AmeacaAVida</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Crime</a>
+                    <a class="nav-link" href="/crime/lista">Crime</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Crise</a>
+                    <a class="nav-link" href="/crise/lista">Crise</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Emergencia</a>
+                    <a class="nav-link" href="/emergencia/lista">Emergencia</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Patrimonio</a>
+                    <a class="nav-link" href="/patrimonio/lista">Patrimonio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Requisitante</a>
+                    <a class="nav-link" href="/requisitante/lista">Requisitante</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">Vitima</a>
+                    <a class="nav-link" href="/vitima/lista">Vitima</a>
                 </li>
             </ul>
             <form class="d-flex">

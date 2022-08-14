@@ -54,6 +54,17 @@ public class Patrimonio extends Crise{
 
     @Override
     public String definirEscalaDeRisco() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(super.getEscalaDeRisco() == 1){
+            return "Risco Baixo";
+        }
+        else if(super.getEscalaDeRisco() == 2){
+            return "Risco Médio";
+        }
+        else if (super.getEscalaDeRisco() == 3){
+            return "Risco Alto";
+        }
+        else{
+            return "Escala de risco não iniciada";
+        }
     }
 }

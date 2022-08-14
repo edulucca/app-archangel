@@ -9,9 +9,8 @@ import org.springframework.stereotype.Component;
 public class CrimeTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        AppEmergencia app = new AppEmergencia("CRIME OCORRENDO NESTE MOMENTO");
         Crime c1 = new Crime(2, 1, true, false);
-        app.relatorio(c1);
+        AppImpressao.relatorio(c1, "CRIME OCORRENDO NESTE MOMENTO");
 
         System.out.println(c1);
 

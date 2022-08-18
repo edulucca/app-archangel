@@ -20,7 +20,7 @@ public class EmergenciaTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Emergencia E1 = new Emergencia("Sobradinho - DF", "Ocorrendo agora", LocalDateTime.now(), new Requisitante("Fernando Quintana","888.888.888-88", "61998738368"));
+        Emergencia E1 = new Emergencia("Sobradinho - DF", "Ocorrendo agora", LocalDateTime.now(), "Fernando Quintana","888.888.888-88", "61998738368");
         E1.impressao();
 
     }

@@ -8,7 +8,9 @@ import br.edu.infnet.apparchangel.model.domain.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -25,10 +27,11 @@ public class EmergenciaTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Emergencia E1 = new Emergencia("Sobradinho - DF", "Ocorrendo agora", new Requisitante("Fernando Quintana","888.888.888-88", "61998738368"));
 
-        List<Crise> listaDeCrises = new ArrayList<Crise>();
+        Set<Crise> listaDeCrises = new HashSet<Crise>();
 
         listaDeCrises.add(new Crime(2, 1, true, false));
-        listaDeCrises.add(new Patrimonio(1,"Casa", "Praga"));
+        listaDeCrises.add(new Crime(2, 1, true, false));
+        listaDeCrises.add(new Crime(2, 1, true, false));
         listaDeCrises.add(new AmeacaAVida(2, "Hemorragia", new ArrayList<String>()));
 
         E1.setCrises(listaDeCrises);

@@ -7,9 +7,11 @@ public abstract class Crise implements IPrinter{
     private String nome;
     private String descricao;
 
-    //Métodos da classe
-    //public abstract void impressao();
+    public Crise(){
+
+    }
     public abstract String definirEscalaDeRisco();
+
     //Getters and Setters
     public Integer getEscalaDeRisco() {
         return escalaDeRisco;

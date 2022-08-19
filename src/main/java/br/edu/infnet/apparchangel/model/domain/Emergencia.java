@@ -9,22 +9,13 @@ public class Emergencia implements IPrinter{
     private LocalDateTime dataHora;
     private Requisitante requisitante;
     
-    public Emergencia(String localizacao, String status, LocalDateTime dataHora, String nome, String cpf, String telefone) {
+    public Emergencia(String localizacao, String status, Requisitante requisitante) {
         this.localizacao = localizacao;
         this.status = status;
-        this.dataHora = dataHora;
-        this.requisitante = new Requisitante(nome, cpf, telefone);
-        //this.requisitante = requisitante;
-    }
-    /*
-    public Requisitante getRequisitante() {
-        return requisitante;
-    }
-
-    public void setRequisitante(Requisitante requisitante) {
+        this.dataHora = LocalDateTime.now();
         this.requisitante = requisitante;
     }
-    */
+
     public String getLocalizacao() {
         return localizacao;
     }
@@ -37,23 +28,10 @@ public class Emergencia implements IPrinter{
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public LocalDateTime getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
-    /*
-    public void impressao(){
-        System.out.println("#Emergencia");
-        System.out.println(this);
-    }
-    */
     @Override
     public String toString() {
         return localizacao + ";" + status + ";" + dataHora + ";" + requisitante;

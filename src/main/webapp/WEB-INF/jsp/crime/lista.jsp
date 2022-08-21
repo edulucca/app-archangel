@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -61,6 +62,14 @@ pageEncoding="UTF-8"%>
         </tr>
         </thead>
         <tbody>
+            <c:forEach var="c" items="${listagem}">
+                <tr>
+                    <td>${c.nrVitimas}</td>
+                    <td>${c.nrSuspeitos}</td>
+                    <td>${c.armaBranca}</td>
+                    <td>${c.armaDeFogo}</td>
+                </tr>
+            </c:forEach>
         <tr>
             <td>2</td>
             <td>1</td>

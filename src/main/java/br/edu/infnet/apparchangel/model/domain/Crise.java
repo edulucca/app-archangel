@@ -2,14 +2,18 @@ package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
 
+import java.util.Objects;
+
 public abstract class Crise implements IPrinter{
     private Integer escalaDeRisco;
     private String nome;
     private String descricao;
 
-    //Métodos da classe
-    //public abstract void impressao();
+    public Crise(){
+
+    }
     public abstract String definirEscalaDeRisco();
+
     //Getters and Setters
     public Integer getEscalaDeRisco() {
         return escalaDeRisco;
@@ -38,5 +42,18 @@ public abstract class Crise implements IPrinter{
     @Override
     public String toString() {
         return escalaDeRisco + ";" + nome + ";" + descricao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Crise crise = (Crise) o;
+        return Objects.equals(escalaDeRisco, crise.escalaDeRisco) && Objects.equals(nome, crise.nome) && Objects.equals(descricao, crise.descricao);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(escalaDeRisco, nome, descricao);
     }
 }

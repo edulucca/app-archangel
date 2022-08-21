@@ -2,28 +2,23 @@ package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 public class Emergencia implements IPrinter{
     private String localizacao;
     private String status;
     private LocalDateTime dataHora;
     private Requisitante requisitante;
-    
-    public Emergencia(String localizacao, String status, LocalDateTime dataHora, Requisitante requisitante) {
+    private Set<Crise> crises;
+
+    public Emergencia(String localizacao, String status, Requisitante requisitante) {
         this.localizacao = localizacao;
         this.status = status;
-        this.dataHora = dataHora;
+        this.dataHora = LocalDateTime.now();
         this.requisitante = requisitante;
-    }
-    
-    public Requisitante getRequisitante() {
-        return requisitante;
     }
 
-    public void setRequisitante(Requisitante requisitante) {
-        this.requisitante = requisitante;
-    }
-    
     public String getLocalizacao() {
         return localizacao;
     }
@@ -36,26 +31,22 @@ public class Emergencia implements IPrinter{
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public LocalDateTime getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
+    public Set<Crise> getCrises() {
+        return crises;
     }
-    /*
-    public void impressao(){
-        System.out.println("#Emergencia");
-        System.out.println(this);
+
+    public void setCrises(Set<Crise> crises) {
+        this.crises = crises;
     }
-    */
+
     @Override
     public String toString() {
-        return localizacao + ";" + status + ";" + dataHora + ";" + requisitante;
+        return localizacao + ";" + status + ";" + dataHora + ";" + requisitante + ";" +
+                crises + ";" + crises.size();
     }
 
     @Override

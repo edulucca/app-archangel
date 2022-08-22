@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -51,20 +52,27 @@ pageEncoding="UTF-8"%>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
     <h3>Classe: Emergencia</h3>
+    <h3>Classe: </h3>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Localização</th>
             <th>Status</th>
             <th>DataHora</th>
+            <th>Requisitante</th>
+            <th>Crises</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Sobradinho - Distrito Federal</td>
-            <td>Em Processo</td>
-            <td>12/08/2021 12:00:00</td>
-        </tr>
+            <c:forEach var="c" items="${listagem}">
+                <tr>
+                    <td>${c.localizacao}</td>
+                    <td>${c.status}</td>
+                    <td>${c.dataHora}</td>
+                    <td>${c.getRequisitante()}</td>
+                    <td>${c.crises}</td>
+                </tr>
+            </c:forEach>
         </tbody>
     </table>
 

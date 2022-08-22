@@ -70,12 +70,6 @@ pageEncoding="UTF-8"%>
                     <td>${c.armaDeFogo}</td>
                 </tr>
             </c:forEach>
-        <tr>
-            <td>2</td>
-            <td>1</td>
-            <td>False</td>
-            <td>True<td>
-        </tr>
         </tbody>
     </table>
 

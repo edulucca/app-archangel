@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -50,7 +51,7 @@ pageEncoding="UTF-8"%>
     <h2>AppArchAngel</h2>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
-    <h3>Classe: Vítima</h3>
+    <h3>Classe: Vitima</h3>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -60,11 +61,13 @@ pageEncoding="UTF-8"%>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Jorge Pereira</td>
-            <td>Marcela Fernanda</td>
-            <td>22</td>
-        </tr>
+        <c:forEach var="c" items="${listagem}">
+            <tr>
+                <td>${c.nome}</td>
+                <td>${c.nomeDaMae}</td>
+                <td>${c.idade}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 

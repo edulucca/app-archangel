@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CrimeController {
     
-    private static List<Crime> crimes;
+    private static List<Crime> crimes = new ArrayList<Crime>();
     
     @GetMapping(value="/crime/lista")
     public String telaLista(Model model){

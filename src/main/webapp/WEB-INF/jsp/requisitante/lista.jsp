@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,11 +61,13 @@ pageEncoding="UTF-8"%>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Eduardo de Lucca</td>
-            <td>777.777.777-77</td>
-            <td>(61)99999-9999</td>
-        </tr>
+        <c:forEach var="c" items="${listagem}">
+            <tr>
+                <td>${c.nome}</td>
+                <td>${c.cpf}</td>
+                <td>${c.telefone}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 

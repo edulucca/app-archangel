@@ -12,6 +12,7 @@ public abstract class Crise implements IPrinter{
     public Crise(){
 
     }
+
     public abstract String definirEscalaDeRisco();
 
     //Getters and Setters

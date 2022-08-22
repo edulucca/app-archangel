@@ -55,6 +55,7 @@ pageEncoding="UTF-8"%>
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Localização</th>
             <th>Status</th>
             <th>DataHora</th>
@@ -65,6 +66,7 @@ pageEncoding="UTF-8"%>
         <tbody>
             <c:forEach var="c" items="${listagem}">
                 <tr>
+                    <td>${c.id}</td>
                     <td>${c.localizacao}</td>
                     <td>${c.status}</td>
                     <td>${c.dataHora}</td>

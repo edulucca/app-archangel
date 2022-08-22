@@ -5,8 +5,8 @@
 package br.edu.infnet.apparchangel.controller;
 
 import br.edu.infnet.apparchangel.model.domain.Crime;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.*;
 
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.stereotype.Controller;
@@ -22,14 +22,22 @@ public class CrimeController {
     
     private static List<Crime> crimes = new ArrayList<Crime>();
 
+    private static Map<Integer, Crime> mapaCrime = new HashMap<Integer, Crime>();
+    private static Integer id = 1;
     public static void incluir(Crime crime){
-        crimes.add(crime);
+        crime.setId(id++);
+        mapaCrime.put(crime.getId(), crime);
 
         AppImpressao.relatorio(crime, "CRIME OCORRENDO NESTE MOMENTO!");
     }
+
+    public static Collection<Crime> obterList(){
+        return mapaCrime.values();
+    }
+
     @GetMapping(value="/crime/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", crimes);
+        model.addAttribute("listagem", obterList());
         return "crime/lista";
     }
 }

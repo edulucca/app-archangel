@@ -55,6 +55,7 @@ pageEncoding="UTF-8"%>
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID</th>
             <th>nrVitimas</th>
             <th>nrSuspeitos</th>
             <th>armaBranca</th>
@@ -64,6 +65,7 @@ pageEncoding="UTF-8"%>
         <tbody>
             <c:forEach var="c" items="${listagem}">
                 <tr>
+                    <td>${c.id}</td>
                     <td>${c.nrVitimas}</td>
                     <td>${c.nrSuspeitos}</td>
                     <td>${c.armaBranca}</td>

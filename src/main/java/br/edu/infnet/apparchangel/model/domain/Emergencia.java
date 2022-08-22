@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Emergencia implements IPrinter{
+    private Integer id;
     private String localizacao;
     private String status;
     private LocalDateTime dataHora;
@@ -17,6 +18,14 @@ public class Emergencia implements IPrinter{
         this.status = status;
         this.dataHora = LocalDateTime.now();
         this.requisitante = requisitante;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public static Requisitante getRequisitante() {

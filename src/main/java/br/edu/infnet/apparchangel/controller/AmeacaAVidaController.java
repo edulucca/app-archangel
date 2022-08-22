@@ -11,24 +11,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author eduardo.s.santana
  */
 @Controller
 public class AmeacaAVidaController {
-    private static List<AmeacaAVida> ameacaAVidas = new ArrayList<AmeacaAVida>();
+    private static Map<Integer, AmeacaAVida> mapaAmeacaAVida = new HashMap<Integer, AmeacaAVida>();
+    private static Integer id = 1;
 
     public static void incluir(AmeacaAVida ameacaAVida){
-        ameacaAVidas.add(ameacaAVida);
+        ameacaAVida.setId(id++);
+        mapaAmeacaAVida.put(ameacaAVida.getId(), ameacaAVida);
 
         AppImpressao.relatorio(ameacaAVida, "ATENCAO!!! VIDA EM RISCO!");
     }
+
+    public static Collection<AmeacaAVida> obterList(){
+        return mapaAmeacaAVida.values();
+    }
+
     @GetMapping(value="/ameacaavida/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", ameacaAVidas);
+        model.addAttribute("listagem", obterList());
 
         return "ameacaavida/lista";
     }

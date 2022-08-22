@@ -11,10 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
@@ -22,17 +19,23 @@ import java.util.Set;
  */
 @Controller
 public class EmergenciaController {
+    private static Map<Integer, Emergencia> mapaEmergencia = new HashMap<Integer, Emergencia>();
+    private static Integer id = 1;
 
-    private static List<Emergencia> emergencias = new ArrayList<Emergencia>();
 
     public static void incluir(Emergencia emergencia) {
-        emergencias.add(emergencia);
+        emergencia.setId(id++);
+        mapaEmergencia.put(emergencia.getId(), emergencia);
 
         AppImpressao.relatorio(emergencia, "EMERGENCIA INICIADA!!!");
     }
+
+    public static Collection<Emergencia> obterList(){
+        return mapaEmergencia.values();
+    }
     @GetMapping(value="/emergencia/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", emergencias);
+        model.addAttribute("listagem", obterList());
         return "emergencia/lista";
     }
 }

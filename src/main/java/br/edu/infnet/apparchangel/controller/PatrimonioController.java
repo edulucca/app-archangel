@@ -4,6 +4,7 @@
  */
 package br.edu.infnet.apparchangel.controller;
 
+import br.edu.infnet.apparchangel.model.domain.AmeacaAVida;
 import br.edu.infnet.apparchangel.model.domain.Crime;
 import br.edu.infnet.apparchangel.model.domain.Patrimonio;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
@@ -11,8 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -20,17 +20,22 @@ import java.util.List;
  */
 @Controller
 public class PatrimonioController {
+    private static Map<Integer, Patrimonio> mapaPatrimonio = new HashMap<Integer, Patrimonio>();
+    private static Integer id = 1;
 
-    private static List<Patrimonio> patrimonios = new ArrayList<Patrimonio>();
 
     public static void incluir(Patrimonio patrimonio){
-        patrimonios.add(patrimonio);
+        patrimonio.setId(id++);
+        mapaPatrimonio.put(patrimonio.getId(), patrimonio);
 
         AppImpressao.relatorio(patrimonio, "PATRIMONIO EM RISCO!");
     }
+    public static Collection<Patrimonio> obterList(){
+        return mapaPatrimonio.values();
+    }
     @GetMapping(value="/patrimonio/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", patrimonios);
+        model.addAttribute("listagem", obterList());
 
         return "patrimonio/lista";
     }

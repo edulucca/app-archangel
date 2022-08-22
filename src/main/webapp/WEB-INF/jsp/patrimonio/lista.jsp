@@ -55,6 +55,7 @@ pageEncoding="UTF-8"%>
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Numero de Patrimonios</th>
             <th>Tipo</th>
             <th>Agente de Risco</th>
@@ -63,6 +64,7 @@ pageEncoding="UTF-8"%>
         <tbody>
         <c:forEach var="c" items="${listagem}">
             <tr>
+                <td>${c.id}</td>
                 <td>${c.nrPatrimonio}</td>
                 <td>${c.tipo}</td>
                 <td>${c.agenteDeRisco}</td>

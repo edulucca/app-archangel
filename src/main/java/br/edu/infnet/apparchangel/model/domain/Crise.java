@@ -5,6 +5,7 @@ import br.edu.infnet.apparchangel.interfaces.IPrinter;
 import java.util.Objects;
 
 public abstract class Crise implements IPrinter{
+    private Integer id;
     private Integer escalaDeRisco;
     private String nome;
     private String descricao;
@@ -38,6 +39,14 @@ public abstract class Crise implements IPrinter{
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

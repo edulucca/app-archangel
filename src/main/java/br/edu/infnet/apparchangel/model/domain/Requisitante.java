@@ -3,6 +3,7 @@ package br.edu.infnet.apparchangel.model.domain;
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
 
 public class Requisitante implements IPrinter{
+    private Integer id;
     private String nome;
     private String cpf;
     private String telefone;
@@ -36,13 +37,15 @@ public class Requisitante implements IPrinter{
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-    /*
-    public void impressao(){
-        System.out.println("#Requisitante");
-        System.out.println(this);
+
+    public Integer getId() {
+        return id;
     }
-    */
-    
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return nome + ";" + cpf + ";" + telefone;

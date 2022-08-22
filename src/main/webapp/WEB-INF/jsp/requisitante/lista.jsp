@@ -55,6 +55,7 @@ pageEncoding="UTF-8"%>
     <table class="table table-striped">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Nome</th>
             <th>CPF</th>
             <th>Telefone</th>
@@ -63,6 +64,7 @@ pageEncoding="UTF-8"%>
         <tbody>
         <c:forEach var="c" items="${listagem}">
             <tr>
+                <td>${c.id}</td>
                 <td>${c.nome}</td>
                 <td>${c.cpf}</td>
                 <td>${c.telefone}</td>

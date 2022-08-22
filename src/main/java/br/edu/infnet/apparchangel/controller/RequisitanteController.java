@@ -10,8 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -19,18 +18,23 @@ import java.util.List;
  */
 @Controller
 public class RequisitanteController {
+    private static Map<Integer, Requisitante> mapaRequisitante = new HashMap<Integer, Requisitante>();
+    private static Integer id = 1;
 
-    private static List<Requisitante> requisitantes = new ArrayList<Requisitante>();
 
     public static void incluir(Requisitante requisitante) {
-        requisitantes.add(requisitante);
+        requisitante.setId(id++);
+        mapaRequisitante.put(requisitante.getId(), requisitante);
 
         AppImpressao.relatorio(requisitante, "Dados do requisitante:");
     }
 
+    public static Collection<Requisitante> obterList(){
+        return mapaRequisitante.values();
+    }
     @GetMapping(value="/requisitante/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", requisitantes);
+        model.addAttribute("listagem", obterList());
         return "requisitante/lista";
     }
 }

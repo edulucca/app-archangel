@@ -59,6 +59,7 @@ pageEncoding="UTF-8"%>
             <th>nrVitimas</th>
             <th>tipoFerimento</th>
             <th>statusVitima</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -68,6 +69,7 @@ pageEncoding="UTF-8"%>
                 <td>${c.nrVitima}</td>
                 <td>${c.tipoFerimento}</td>
                 <td>${c.statusVitima}</td>
+                <td><a href="/ameacaavida/${c.id}/excluir">Excluir</a></td>
             </tr>
         </c:forEach>
         </tbody>

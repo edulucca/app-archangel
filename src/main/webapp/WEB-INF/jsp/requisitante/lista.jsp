@@ -59,6 +59,7 @@ pageEncoding="UTF-8"%>
             <th>Nome</th>
             <th>CPF</th>
             <th>Telefone</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -68,6 +69,7 @@ pageEncoding="UTF-8"%>
                 <td>${c.nome}</td>
                 <td>${c.cpf}</td>
                 <td>${c.telefone}</td>
+                <td><a href="/requisitante/${c.id}/excluir">Excluir</a></td>
             </tr>
         </c:forEach>
         </tbody>

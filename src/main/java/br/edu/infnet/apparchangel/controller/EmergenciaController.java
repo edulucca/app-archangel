@@ -9,6 +9,7 @@ import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -30,6 +31,10 @@ public class EmergenciaController {
         AppImpressao.relatorio(emergencia, "EMERGENCIA INICIADA!!!");
     }
 
+    public static void excluir(Integer id){
+        mapaEmergencia.remove(id);
+    }
+
     public static Collection<Emergencia> obterList(){
         return mapaEmergencia.values();
     }
@@ -37,5 +42,13 @@ public class EmergenciaController {
     public String telaLista(Model model){
         model.addAttribute("listagem", obterList());
         return "emergencia/lista";
+    }
+
+    @GetMapping(value = "/emergencia/{id}/excluir")
+    public String exclusao(@PathVariable Integer id){
+
+        excluir(id);
+
+        return "redirect:/emergencia/lista";
     }
 }

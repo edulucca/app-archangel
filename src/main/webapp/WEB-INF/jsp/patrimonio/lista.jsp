@@ -59,6 +59,7 @@ pageEncoding="UTF-8"%>
             <th>Numero de Patrimonios</th>
             <th>Tipo</th>
             <th>Agente de Risco</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -68,6 +69,7 @@ pageEncoding="UTF-8"%>
                 <td>${c.nrPatrimonio}</td>
                 <td>${c.tipo}</td>
                 <td>${c.agenteDeRisco}</td>
+                <td><a href="/patrimonio/${c.id}/excluir">Excluir</a></td>
             </tr>
         </c:forEach>
         </tbody>

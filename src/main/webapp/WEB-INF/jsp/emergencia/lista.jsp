@@ -61,6 +61,7 @@ pageEncoding="UTF-8"%>
             <th>DataHora</th>
             <th>Requisitante</th>
             <th>Crises</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -72,6 +73,7 @@ pageEncoding="UTF-8"%>
                     <td>${c.dataHora}</td>
                     <td>${c.getRequisitante()}</td>
                     <td>${c.crises}</td>
+                    <td><a href="/emergencia/${c.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

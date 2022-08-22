@@ -9,6 +9,7 @@ import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -29,6 +30,10 @@ public class RequisitanteController {
         AppImpressao.relatorio(requisitante, "Dados do requisitante:");
     }
 
+    public static void excluir(Integer id){
+        mapaRequisitante.remove(id);
+    }
+
     public static Collection<Requisitante> obterList(){
         return mapaRequisitante.values();
     }
@@ -36,5 +41,13 @@ public class RequisitanteController {
     public String telaLista(Model model){
         model.addAttribute("listagem", obterList());
         return "requisitante/lista";
+    }
+
+    @GetMapping(value = "/requisitante/{id}/excluir")
+    public String exclusao(@PathVariable Integer id){
+
+        excluir(id);
+
+        return "redirect:/requisitante/lista";
     }
 }

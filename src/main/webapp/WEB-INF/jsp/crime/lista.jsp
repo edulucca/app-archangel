@@ -60,6 +60,7 @@ pageEncoding="UTF-8"%>
             <th>nrSuspeitos</th>
             <th>armaBranca</th>
             <th>armaDeFogo</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -70,6 +71,7 @@ pageEncoding="UTF-8"%>
                     <td>${c.nrSuspeitos}</td>
                     <td>${c.armaBranca}</td>
                     <td>${c.armaDeFogo}</td>
+                    <td><a href="/crime/${c.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

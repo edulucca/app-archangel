@@ -11,6 +11,7 @@ import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.*;
 
@@ -30,6 +31,11 @@ public class PatrimonioController {
 
         AppImpressao.relatorio(patrimonio, "PATRIMONIO EM RISCO!");
     }
+
+    public static void excluir(Integer id){
+        mapaPatrimonio.remove(id);
+    }
+
     public static Collection<Patrimonio> obterList(){
         return mapaPatrimonio.values();
     }
@@ -38,5 +44,13 @@ public class PatrimonioController {
         model.addAttribute("listagem", obterList());
 
         return "patrimonio/lista";
+    }
+
+    @GetMapping(value = "/patrimonio/{id}/excluir")
+    public String exclusao(@PathVariable Integer id){
+
+        excluir(id);
+
+        return "redirect:/patrimonio/lista";
     }
 }

@@ -12,6 +12,7 @@ import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -34,10 +35,21 @@ public class CrimeController {
     public static Collection<Crime> obterList(){
         return mapaCrime.values();
     }
+    public static void excluir(Integer id){
+        mapaCrime.remove(id);
+    }
 
     @GetMapping(value="/crime/lista")
     public String telaLista(Model model){
         model.addAttribute("listagem", obterList());
         return "crime/lista";
+    }
+
+    @GetMapping(value = "/crime/{id}/excluir")
+    public String exclusao(@PathVariable Integer id){
+
+        excluir(id);
+
+        return "redirect:/crime/lista";
     }
 }

@@ -68,6 +68,7 @@ pageEncoding="UTF-8"%>
                 <td>${c.nome}</td>
                 <td>${c.nomeDaMae}</td>
                 <td>${c.idade}</td>
+                <td><a href="/vitima/${c.id}/excluir">Excluir</a></td>
             </tr>
         </c:forEach>
         </tbody>

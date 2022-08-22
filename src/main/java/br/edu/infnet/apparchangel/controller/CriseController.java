@@ -20,6 +20,7 @@ import java.util.List;
 @Controller
 public class CriseController {
     private static List<Crise> crises = new ArrayList<Crise>();
+
     @GetMapping(value="/crise/lista")
     public String telaLista(Model model){
         Crime c1 = new Crime(2, 1, true, false);

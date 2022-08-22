@@ -1,5 +1,6 @@
 package br.edu.infnet.apparchangel.model.test;
 
+import br.edu.infnet.apparchangel.controller.PatrimonioController;
 import br.edu.infnet.apparchangel.model.domain.Patrimonio;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -11,12 +12,12 @@ public class PatrimonioTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         Patrimonio p1 = new Patrimonio(2,"Carro", "Fogo");
-        AppImpressao.relatorio(p1, "PATRIMONIO EM RISCO NESTE MOMENTO");
+        PatrimonioController.incluir(p1);
 
         Patrimonio p2 = new Patrimonio(1,"Casa", "Praga");
-        System.out.println(p2);
+        PatrimonioController.incluir(p2);
 
         Patrimonio p3 = new Patrimonio(3,"Comercio", "Força Física");
-        System.out.println(p3);
+        PatrimonioController.incluir(p3);
     }
 }

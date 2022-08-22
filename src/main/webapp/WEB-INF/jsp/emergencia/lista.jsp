@@ -52,7 +52,6 @@ pageEncoding="UTF-8"%>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
     <h3>Classe: Emergencia</h3>
-    <h3>Classe: </h3>
     <table class="table table-striped">
         <thead>
         <tr>

@@ -22,18 +22,14 @@ import java.util.List;
 public class PatrimonioController {
 
     private static List<Patrimonio> patrimonios = new ArrayList<Patrimonio>();
+
+    public static void incluir(Patrimonio patrimonio){
+        patrimonios.add(patrimonio);
+
+        AppImpressao.relatorio(patrimonio, "PATRIMONIO EM RISCO!");
+    }
     @GetMapping(value="/patrimonio/lista")
     public String telaLista(Model model){
-        Patrimonio p1 = new Patrimonio(2,"Carro", "Fogo");
-
-        Patrimonio p2 = new Patrimonio(1,"Casa", "Praga");
-
-        Patrimonio p3 = new Patrimonio(3,"Comercio", "Força Física");
-
-        patrimonios.add(p1);
-        patrimonios.add(p2);
-        patrimonios.add(p3);
-
         model.addAttribute("listagem", patrimonios);
 
         return "patrimonio/lista";

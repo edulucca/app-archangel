@@ -4,6 +4,7 @@
  */
 package br.edu.infnet.apparchangel.model.test;
 
+import br.edu.infnet.apparchangel.controller.EmergenciaController;
 import br.edu.infnet.apparchangel.model.domain.*;
 
 import java.time.LocalDateTime;
@@ -36,7 +37,7 @@ public class EmergenciaTeste implements ApplicationRunner {
 
         E1.setCrises(listaDeCrises);
 
-        E1.impressao();
+        EmergenciaController.incluir(E1);
 
     }
     

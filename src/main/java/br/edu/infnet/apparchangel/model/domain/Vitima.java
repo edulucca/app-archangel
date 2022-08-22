@@ -1,6 +1,8 @@
 package br.edu.infnet.apparchangel.model.domain;
 
-public class Vitima {
+import br.edu.infnet.apparchangel.interfaces.IPrinter;
+
+public class Vitima implements IPrinter {
     private String nome;
     private String nomeDaMae;
     private String idade;
@@ -38,5 +40,11 @@ public class Vitima {
     @Override
     public String toString() {
         return nome + ";" + nomeDaMae + ";" + idade;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("#Vitima");
+        System.out.println(this);
     }
 }

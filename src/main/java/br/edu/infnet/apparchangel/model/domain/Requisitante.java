@@ -8,7 +8,13 @@ public class Requisitante implements IPrinter{
     private String cpf;
     private String telefone;
 
-    public Requisitante(String nome, String cpf, String telefone) {
+    public Requisitante(String nome, String cpf, String telefone) throws Exception {
+        if(cpf == null){
+            throw new Exception("Não é possível criar CPF nulo");
+        }
+        if(cpf.isEmpty()){
+            throw new Exception("Não é possível aceitar CPF sem preenchimento");
+        }
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;

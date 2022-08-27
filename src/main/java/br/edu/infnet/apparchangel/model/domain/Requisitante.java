@@ -1,6 +1,7 @@
 package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
+import br.edu.infnet.apparchangel.model.exception.CpfInvalidoException;
 
 public class Requisitante implements IPrinter{
     private Integer id;
@@ -8,12 +9,12 @@ public class Requisitante implements IPrinter{
     private String cpf;
     private String telefone;
 
-    public Requisitante(String nome, String cpf, String telefone) throws Exception {
+    public Requisitante(String nome, String cpf, String telefone) throws CpfInvalidoException {
         if(cpf == null){
-            throw new Exception("Não é possível criar CPF nulo");
+            throw new CpfInvalidoException("Não é possível criar CPF nulo");
         }
         if(cpf.isEmpty()){
-            throw new Exception("Não é possível aceitar CPF sem preenchimento");
+            throw new CpfInvalidoException("Não é possível aceitar CPF sem preenchimento");
         }
         this.nome = nome;
         this.cpf = cpf;

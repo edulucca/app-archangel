@@ -1,6 +1,9 @@
 package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
+import br.edu.infnet.apparchangel.model.exception.CriseVaziaException;
+import br.edu.infnet.apparchangel.model.exception.RequisitanteNuloException;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -13,11 +16,18 @@ public class Emergencia implements IPrinter{
     private static Requisitante requisitante;
     private Set<Crise> crises;
 
-    public Emergencia(String localizacao, String status, Requisitante requisitante) {
+    public Emergencia(String localizacao, String status, Requisitante requisitante, Set<Crise> crises) throws RequisitanteNuloException, CriseVaziaException {
+        if(requisitante == null){
+            throw new RequisitanteNuloException("O Requisitante não pode ser nulo");
+        }
+        if(crises.isEmpty()){
+            throw new CriseVaziaException("A quantidade de Crises tem que ser maior que um");
+        }
         this.localizacao = localizacao;
         this.status = status;
         this.dataHora = LocalDateTime.now();
         this.requisitante = requisitante;
+        this.crises = crises;
     }
 
     public Integer getId() {
@@ -52,13 +62,6 @@ public class Emergencia implements IPrinter{
         return dataHora;
     }
 
-    public Set<Crise> getCrises() {
-        return crises;
-    }
-
-    public void setCrises(Set<Crise> crises) {
-        this.crises = crises;
-    }
 
     @Override
     public String toString() {

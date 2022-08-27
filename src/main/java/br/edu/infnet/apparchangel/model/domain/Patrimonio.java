@@ -1,5 +1,7 @@
 package br.edu.infnet.apparchangel.model.domain;
 
+import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMaiorQueTresException;
+
 public class Patrimonio extends Crise{
     private Integer nrPatrimonio;
     private String tipo;
@@ -53,7 +55,12 @@ public class Patrimonio extends Crise{
     }
 
     @Override
-    public String definirEscalaDeRisco() {
+    public String definirEscalaDeRisco() throws EscalaDeRiscoMaiorQueTresException {
+
+        if(super.getEscalaDeRisco() > 3){
+            throw new EscalaDeRiscoMaiorQueTresException("A Escala de Risco (" + super.getEscalaDeRisco() +") não pode ser maior que 3");
+        }
+
         if(super.getEscalaDeRisco() == 1){
             return "Risco Baixo";
         }

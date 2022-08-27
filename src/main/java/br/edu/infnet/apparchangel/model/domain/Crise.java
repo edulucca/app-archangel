@@ -1,6 +1,9 @@
 package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
+import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMaiorQueTresException;
+import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMenorQueZeroException;
+import br.edu.infnet.apparchangel.model.exception.NumeroDeVitimasInvalidas;
 
 import java.util.Objects;
 
@@ -14,7 +17,7 @@ public abstract class Crise implements IPrinter{
 
     }
 
-    public abstract String definirEscalaDeRisco();
+    public abstract String definirEscalaDeRisco() throws EscalaDeRiscoMenorQueZeroException, EscalaDeRiscoMaiorQueTresException, NumeroDeVitimasInvalidas;
 
     //Getters and Setters
     public Integer getEscalaDeRisco() {

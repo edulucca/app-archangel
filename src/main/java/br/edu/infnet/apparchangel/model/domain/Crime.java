@@ -1,5 +1,7 @@
 package br.edu.infnet.apparchangel.model.domain;
 
+import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMenorQueZeroException;
+
 public class Crime extends Crise{
     private Integer nrVitimas;
     private Integer nrSuspeitos;
@@ -63,18 +65,23 @@ public class Crime extends Crise{
     }
 
     @Override
-    public String definirEscalaDeRisco() {
+    public String definirEscalaDeRisco() throws EscalaDeRiscoMenorQueZeroException {
+
+        if(super.getEscalaDeRisco() < 1){
+            throw new EscalaDeRiscoMenorQueZeroException("A Escala de Risco ("+ super.getEscalaDeRisco() +") nao poder ser menor que 1");
+        }
+
         if(super.getEscalaDeRisco() == 1){
             return "Risco Baixo";
         }
         else if(super.getEscalaDeRisco() == 2){
             return "Risco Médio";
         }
-        else if (super.getEscalaDeRisco() == 3){
+        else if (super.getEscalaDeRisco() >= 3){
             return "Risco Alto";
         }
         else{
-            return "Escala de risco não iniciada";
+            return "Escala de risco não reconhecida";
         }
     }
 }

@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -20,15 +19,16 @@ import java.util.*;
  */
 @Controller
 public class EmergenciaController {
-    private static Map<Integer, Emergencia> mapaEmergencia = new HashMap<Integer, Emergencia>();
+    private static final Map<Integer, Emergencia> mapaEmergencia = new HashMap<Integer, Emergencia>();
     private static Integer id = 1;
-
 
     public static void incluir(Emergencia emergencia) {
         emergencia.setId(id++);
+
         mapaEmergencia.put(emergencia.getId(), emergencia);
 
-        AppImpressao.relatorio(emergencia, "EMERGENCIA INICIADA!!!");
+        AppImpressao.relatorio(emergencia, "Dados da emergencia:");
+
     }
 
     public static void excluir(Integer id){

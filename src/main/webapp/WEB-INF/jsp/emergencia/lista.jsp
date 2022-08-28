@@ -68,11 +68,11 @@ pageEncoding="UTF-8"%>
             <c:forEach var="c" items="${listagem}">
                 <tr>
                     <td>${c.id}</td>
-                    <td>${c.localizacao}</td>
+                    <td>${c.getLocalizacao()}</td>
                     <td>${c.status}</td>
                     <td>${c.dataHora}</td>
-                    <td>${c.getRequisitante()}</td>
-                    <td>${c.crises}</td>
+                    <td>${c.getRequisitante().nome}</td>
+                    <td>${c.crises.size()}</td>
                     <td><a href="/emergencia/${c.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>

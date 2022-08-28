@@ -1,0 +1,3 @@
+2;Carro;Fogo
+1;Casa;Praga
+1;Comercio;Agua

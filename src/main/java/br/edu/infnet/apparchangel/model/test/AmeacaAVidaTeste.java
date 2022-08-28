@@ -9,6 +9,10 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,18 +23,48 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
 
-        try {
-            AmeacaAVida a1 = new AmeacaAVida(3, "Fratura exposta", new ArrayList<String>(),
-                    new ArrayList<Vitima>());
-            a1.addVitima(new Vitima("Fernanda", "Josélia", "25"));
-            a1.getStatusVitima().add("Acordada");
-            a1.setEscalaDeRisco(1);
-            System.out.println("Definicao da Escala de Risco: " + a1.definirEscalaDeRisco());
-            AmeacaAVidaController.incluir(a1);
-        } catch (NumeroDeVitimasInvalidas e) {
-            System.out.println("[ERROR - AMEACAAVIDA] " + e.getMessage());
-        }
 
+
+        String dir = "F:/Projetos_InfNet/app-archangel/dev/";
+        String arq = "ameacaavidas.txt";
+        try{
+            try {
+                BufferedReader leitor = new BufferedReader(new FileReader(dir+arq));
+
+                //Processamento
+                String linha = leitor.readLine();
+                while(linha != null){
+
+                    try {
+                        String campo[] = linha.split(";");
+                        AmeacaAVida a1 = new AmeacaAVida(Integer.parseInt(campo[0]),
+                                campo[1], new ArrayList<String>(),
+                                new ArrayList<Vitima>());
+                        a1.addVitima(new Vitima(campo[4], campo[5], campo[3]));
+                        a1.getStatusVitima().add(campo[2]);
+                        a1.setEscalaDeRisco(Integer.parseInt(campo[3]));
+
+                        System.out.println("Definicao da Escala de Risco: " + a1.definirEscalaDeRisco());
+
+                        AmeacaAVidaController.incluir(a1);
+                    } catch (NumeroDeVitimasInvalidas e) {
+                        System.out.println("[ERROR - AMEACAAVIDA] " + e.getMessage());
+                    }
+
+                    linha = leitor.readLine();
+                }
+
+                //Close
+                leitor.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERROR] O arquivo não existe");
+            } catch (IOException e) {
+                System.out.println("[ERROR] Problema ao fechar o arquivo");
+            }
+        }finally {
+            System.out.println("Terminou!!!");
+        }
+        /*
         try {
             AmeacaAVida a2 = new AmeacaAVida(2, "Hemorragia", new ArrayList<String>(),
                 new ArrayList<Vitima>());
@@ -65,7 +99,7 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
         } catch (NumeroDeVitimasInvalidas e) {
             System.out.println("[ERROR - AMEACAAVIDA] " + e.getMessage());
         }
-
+*/
     }
 
 }

@@ -21,6 +21,10 @@ public class Requisitante implements IPrinter{
         this.telefone = telefone;
     }
 
+    public Requisitante() {
+
+    }
+
     public String getNome() {
         return nome;
     }

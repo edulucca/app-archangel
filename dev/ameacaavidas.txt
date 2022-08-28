@@ -1,0 +1,2 @@
+3;Fratura Exposta;Acordada;1;Fernanda;Josélia;25
+4;Queimadura;Acordada;2;Pedro;Maria;18

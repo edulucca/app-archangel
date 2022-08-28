@@ -7,48 +7,51 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Component
 public class CrimeTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) {
-        try {
-            Crime c1 = new Crime(2, 1, true, false);
-            c1.setEscalaDeRisco(2);
-            System.out.println("Definicao da Escala de Risco: " + c1.definirEscalaDeRisco());
-            CrimeController.incluir(c1);
-        } catch (EscalaDeRiscoMenorQueZeroException e) {
-            System.out.println("[ERROR - CRIME] " + e.getMessage());
+
+        String dir = "F:/Projetos_InfNet/app-archangel/dev/";
+        String arq = "crimes.txt";
+
+        try{
+            try {
+                BufferedReader leitor = new BufferedReader(new FileReader(dir+arq));
+
+                //Processamento
+                String linha = leitor.readLine();
+
+                while(linha != null){
+                    try {
+                        String[] campo = linha.split(";");
+                        Crime c1 = new Crime(Integer.parseInt(campo[0]), Integer.parseInt(campo[1]), Boolean.parseBoolean(campo[2]),
+                                            Boolean.parseBoolean(campo[3]));
+                        c1.setEscalaDeRisco(2);
+                        System.out.println("Definicao da Escala de Risco: " + c1.definirEscalaDeRisco());
+                        CrimeController.incluir(c1);
+                    } catch (EscalaDeRiscoMenorQueZeroException e) {
+                        System.out.println("[ERROR - CRIME] " + e.getMessage());
+                    }
+                    linha = leitor.readLine();
+                }
+
+                //Close
+                leitor.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERROR] O arquivo não existe");
+            } catch (IOException e) {
+                System.out.println("[ERROR] Problema ao fechar o arquivo");
+            }
+        }finally {
+            System.out.println("Terminou!!!");
         }
 
-
-        try {
-            Crime c2 = new Crime(10, 5, true, true);
-            c2.setEscalaDeRisco(1);
-            System.out.println("Definicao da Escala de Risco: " + c2.definirEscalaDeRisco());
-            CrimeController.incluir(c2);
-        } catch (EscalaDeRiscoMenorQueZeroException e) {
-            System.out.println("[ERROR - CRIME] " + e.getMessage());
-        }
-
-
-        try {
-            Crime c3 = new Crime(0,1, false, false);
-            c3.setEscalaDeRisco(3);
-            System.out.println("Definicao da Escala de Risco: " + c3.definirEscalaDeRisco());
-            CrimeController.incluir(c3);
-        } catch (EscalaDeRiscoMenorQueZeroException e) {
-            System.out.println("[ERROR - CRIME] " + e.getMessage());
-        }
-
-
-        try {
-            Crime c4 = new Crime(0,1, false, false);
-            c4.setEscalaDeRisco(0);
-            System.out.println("Definicao da Escala de Risco: " + c4.definirEscalaDeRisco());
-            CrimeController.incluir(c4);
-        } catch (EscalaDeRiscoMenorQueZeroException e) {
-            System.out.println("[ERROR - CRIME] " + e.getMessage());
-        }
 
     }
 }

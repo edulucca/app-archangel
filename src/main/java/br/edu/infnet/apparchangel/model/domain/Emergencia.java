@@ -13,7 +13,7 @@ public class Emergencia implements IPrinter{
     private String localizacao;
     private String status;
     private LocalDateTime dataHora;
-    private static Requisitante requisitante;
+    private Requisitante requisitante;
     private Set<Crise> crises;
 
     public Emergencia(String localizacao, String status, Requisitante requisitante, Set<Crise> crises) throws RequisitanteNuloException, CriseVaziaException {
@@ -30,6 +30,14 @@ public class Emergencia implements IPrinter{
         this.crises = crises;
     }
 
+    public Set<Crise> getCrises() {
+        return crises;
+    }
+
+    public void setCrises(Set<Crise> crises) {
+        this.crises = crises;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -38,12 +46,12 @@ public class Emergencia implements IPrinter{
         this.id = id;
     }
 
-    public static Requisitante getRequisitante() {
-        return requisitante;
+    public Requisitante getRequisitante() {
+        return this.requisitante;
     }
 
-    public static void setRequisitante(Requisitante requisitante) {
-        Emergencia.requisitante = requisitante;
+    public void setRequisitante(Requisitante requisitante) {
+        this.requisitante = requisitante;
     }
 
     public String getLocalizacao() {

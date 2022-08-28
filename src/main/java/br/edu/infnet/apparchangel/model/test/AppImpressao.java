@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class AppImpressao {
-    //Feature 4 - Finalizada
+
     public static void relatorio(IPrinter printer, String mensagem){
         System.out.println();
         System.out.println(mensagem);

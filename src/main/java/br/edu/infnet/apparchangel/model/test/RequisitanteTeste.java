@@ -6,45 +6,51 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 @Component
 public class RequisitanteTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
 
-        try {
-            Requisitante r1 = new Requisitante("Fernando Quintana","888.888.888-88", "61998738368");
-            RequisitanteController.incluir(r1);
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.getMessage());
+        String dir = "F:/Projetos_InfNet/app-archangel/dev/";
+        String arq = "requisitantes.txt";
+
+        try{
+            try {
+                BufferedReader leitor = new BufferedReader(new FileReader(dir+arq));
+
+                //Processamento
+                String linha = leitor.readLine();
+                while(linha != null){
+                    try {
+                        String[] campo = linha.split(";");
+                        Requisitante r1 = new Requisitante(campo[0],campo[1], campo[2]);
+                        RequisitanteController.incluir(r1);
+                    } catch (Exception e) {
+                        System.out.println("[ERROR] " + e.getMessage());
+                    }
+
+                    linha = leitor.readLine();
+                }
+
+                //Close
+                leitor.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("[ERROR] O arquivo não existe");
+            } catch (IOException e) {
+                System.out.println("[ERROR] Problema ao fechar o arquivo");
+            }
+        }finally {
+            System.out.println("Terminou!!!");
         }
 
-        try {
-            Requisitante r2 = new Requisitante("Diego Monteiro", "777.888.888-88", "61965417532");
-            RequisitanteController.incluir(r2);
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
 
-        try {
-            Requisitante r3 = new Requisitante("Pedro Henrique", "777.666.888-88", "61957327863");
-            RequisitanteController.incluir(r3);
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
-        try {
-            Requisitante r2 = new Requisitante("Rafael Andrade", "", "61965417532");
-            RequisitanteController.incluir(r2);
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
 
-        try {
-            Requisitante r3 = new Requisitante("Gabriel Ferreira", null, "61957327863");
-            RequisitanteController.incluir(r3);
-        } catch (Exception e) {
-            System.out.println("[ERROR] " + e.getMessage());
-        }
 
     }
 }

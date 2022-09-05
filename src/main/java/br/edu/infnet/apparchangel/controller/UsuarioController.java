@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
@@ -20,11 +21,18 @@ import java.util.*;
  */
 @Controller
 public class UsuarioController {
-    
-    private static List<Crime> crimes = new ArrayList<Crime>();
-
     private static Map<String, Usuario> mapaUsuario = new HashMap<String, Usuario>();
-    //private static Integer id = 1;
+
+    public static Usuario validar(String email, String senha){
+        Usuario usuario = mapaUsuario.get(email);
+
+        if(usuario != null){
+            if(senha.equals(usuario.getSenha())){
+                return usuario;
+            }
+        }
+        return null;
+    }
 
     public static void incluir(Usuario usuario){
         mapaUsuario.put(usuario.getEmail(), usuario);
@@ -36,8 +44,8 @@ public class UsuarioController {
         return mapaUsuario.values();
     }
 
-    public static void excluir(Integer id){
-        mapaUsuario.remove(id);
+    public static void excluir(String email){
+        mapaUsuario.remove(email);
     }
 
     @GetMapping(value="/usuario/lista")
@@ -46,11 +54,24 @@ public class UsuarioController {
         return "usuario/lista";
     }
 
-    @GetMapping(value = "/crime/{id}/excluir")
-    public String exclusao(@PathVariable Integer id){
-
-        excluir(id);
-
-        return "redirect:/crime/lista";
+    @GetMapping(value = "/usuario")
+    public String telaCadastro(){
+        return "usuario/cadastro";
     }
+
+    @PostMapping(value = "/usuario/incluir")
+    public String inclusao(Usuario usuario){
+        incluir(usuario);
+        return "redirect:/";
+    }
+
+
+    @GetMapping(value = "/usuario/{email}/excluir")
+    public String exclusao(@PathVariable String email){
+
+        excluir(email);
+
+        return "redirect:/usuario/lista";
+    }
+
 }

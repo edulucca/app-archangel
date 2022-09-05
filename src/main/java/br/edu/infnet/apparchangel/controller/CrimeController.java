@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -27,6 +28,7 @@ public class CrimeController {
     private static Integer id = 1;
     public static void incluir(Crime crime){
         crime.setId(id++);
+
         mapaCrime.put(crime.getId(), crime);
 
         AppImpressao.relatorio(crime, "CRIME OCORRENDO NESTE MOMENTO!");
@@ -43,6 +45,22 @@ public class CrimeController {
     public String telaLista(Model model){
         model.addAttribute("listagem", obterList());
         return "crime/lista";
+    }
+
+    @GetMapping(value = "/crime")
+    public String telaCadastro(){
+
+        return "crime/cadastro";
+    }
+
+    @PostMapping(value = "/crime/incluir")
+    public String inclusao(Crime crime){
+        incluir(crime);
+
+        System.out.println(crime.isArmaBranca());
+        System.out.println(crime.isArmaDeFogo());
+
+        return "redirect:/crime/lista";
     }
 
     @GetMapping(value = "/crime/{id}/excluir")

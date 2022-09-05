@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,42 +11,7 @@ pageEncoding="UTF-8"%>
     <title>App Archangel</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse" id="mynavbar">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ameacaavida/lista">AmeacaAVida</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/crime/lista">Crime</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/crise/lista">Crise</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/emergencia/lista">Emergencia</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/patrimonio/lista">Patrimonio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/requisitante/lista">Requisitante</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/vitima/lista">Vitima</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="text" placeholder="Search">
-                <button class="btn btn-primary" type="button">Search</button>
-            </form>
-        </div>
-    </div>
-</nav>
+<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container mt-3">
     <h2>AppArchAngel</h2>
@@ -58,6 +24,7 @@ pageEncoding="UTF-8"%>
             <th>Nome</th>
             <th>Email</th>
             <th>Senha</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -66,6 +33,7 @@ pageEncoding="UTF-8"%>
                     <td>${u.nome}</td>
                     <td>${u.email}</td>
                     <td>${u.senha}</td>
+                    <td><a href="/usuario/${u.email}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -1,5 +1,6 @@
 package br.edu.infnet.apparchangel.controller;
 
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,10 +22,11 @@ public class AppController {
 
     @PostMapping(value = "/login")
     public String login(Model model, @RequestParam String email, @RequestParam String senha){
-        if (email.equalsIgnoreCase(senha)){
+        Usuario usuario = UsuarioController.validar(email, senha);
+        if (usuario != null){
             String nome = "Admin";
 
-            model.addAttribute("user", nome);
+            model.addAttribute("user", usuario.getNome());
             return "home";
         }
         return "login";

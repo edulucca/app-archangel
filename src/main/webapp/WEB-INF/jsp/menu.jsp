@@ -47,7 +47,7 @@ pageEncoding="UTF-8"%>
                 </c:if>
                 <c:if test="${not empty user}">
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout - ${user}</a>
+                        <a class="nav-link" href="/logout">Logout - ${user.nome}</a>
                     </li>
                 </c:if>
             </ul>

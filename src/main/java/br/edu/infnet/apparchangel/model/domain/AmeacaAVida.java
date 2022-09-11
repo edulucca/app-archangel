@@ -59,6 +59,10 @@ public class AmeacaAVida extends Crise{
         this.statusVitima = statusVitima;
     }
 
+    public void addStatus(String statusVitima){
+        this.statusVitima.add(statusVitima);
+    }
+
     /*
     @Override
     public void impressao() {

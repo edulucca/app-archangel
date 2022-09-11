@@ -5,7 +5,9 @@
 package br.edu.infnet.apparchangel.controller;
 
 import br.edu.infnet.apparchangel.model.domain.Vitima;
+import br.edu.infnet.apparchangel.model.service.VitimaService;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,29 +21,13 @@ import java.util.*;
  */
 @Controller
 public class VitimaController {
-    private static List<Vitima> vitimas = new ArrayList<Vitima>();
-    private static Map<Integer, Vitima> mapaVitima = new HashMap<Integer, Vitima>();
-    private static Integer id = 1;
 
-
-    public static void incluir(Vitima vitima){
-        vitima.setId(id++);
-        mapaVitima.put(vitima.getId(), vitima);
-
-        AppImpressao.relatorio(vitima, "Dados da vítima: ");
-    }
-
-    public static void excluir(Integer id){
-        mapaVitima.remove(id);
-    }
-
-    public static Collection<Vitima> obterList(){
-        return mapaVitima.values();
-    }
+    @Autowired
+    private VitimaService vitimaService;
 
     @GetMapping(value="/vitima/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", obterList());
+        model.addAttribute("listagem", vitimaService.obterList());
 
         return "vitima/lista";
     }
@@ -49,7 +35,7 @@ public class VitimaController {
     @GetMapping(value = "/vitima/{id}/excluir")
     public String exclusao(@PathVariable Integer id){
 
-        excluir(id);
+        vitimaService.excluir(id);
 
         return "redirect:/vitima/lista";
     }

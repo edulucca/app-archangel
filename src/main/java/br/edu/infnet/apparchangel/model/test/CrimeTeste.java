@@ -3,6 +3,8 @@ package br.edu.infnet.apparchangel.model.test;
 import br.edu.infnet.apparchangel.controller.CrimeController;
 import br.edu.infnet.apparchangel.model.domain.Crime;
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMenorQueZeroException;
+import br.edu.infnet.apparchangel.model.service.CrimeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,10 @@ import java.io.IOException;
 
 @Component
 public class CrimeTeste implements ApplicationRunner {
+
+    @Autowired
+    private CrimeService crimeService;
+
     @Override
     public void run(ApplicationArguments args) {
 
@@ -34,7 +40,7 @@ public class CrimeTeste implements ApplicationRunner {
                                             Boolean.parseBoolean(campo[3]));
                         c1.setEscalaDeRisco(2);
                         System.out.println("Definicao da Escala de Risco: " + c1.definirEscalaDeRisco());
-                        CrimeController.incluir(c1);
+                        crimeService.incluir(c1);
                     } catch (EscalaDeRiscoMenorQueZeroException e) {
                         System.out.println("[ERROR - CRIME] " + e.getMessage());
                     }

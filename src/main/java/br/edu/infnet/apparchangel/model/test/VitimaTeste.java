@@ -2,6 +2,8 @@ package br.edu.infnet.apparchangel.model.test;
 
 import br.edu.infnet.apparchangel.controller.VitimaController;
 import br.edu.infnet.apparchangel.model.domain.Vitima;
+import br.edu.infnet.apparchangel.model.service.VitimaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -13,6 +15,9 @@ import java.io.IOException;
 
 @Component
 public class VitimaTeste implements ApplicationRunner {
+
+    @Autowired
+    private VitimaService vitimaService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -31,7 +36,7 @@ public class VitimaTeste implements ApplicationRunner {
                     String[] campos = linha.split(";");
 
                     Vitima v1 = new Vitima(campos[0], campos[1], campos[2]);
-                    VitimaController.incluir(v1);
+                    vitimaService.incluir(v1);
 
                     linha = leitor.readLine();
                 }

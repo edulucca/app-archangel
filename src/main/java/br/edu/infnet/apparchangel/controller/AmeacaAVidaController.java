@@ -6,11 +6,14 @@ package br.edu.infnet.apparchangel.controller;
 
 import br.edu.infnet.apparchangel.model.domain.AmeacaAVida;
 import br.edu.infnet.apparchangel.model.domain.Crime;
+import br.edu.infnet.apparchangel.model.domain.Vitima;
+import br.edu.infnet.apparchangel.model.service.AmeacaAVidaService;
+import br.edu.infnet.apparchangel.model.service.VitimaService;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -19,34 +22,49 @@ import java.util.*;
  */
 @Controller
 public class AmeacaAVidaController {
-    private static Map<Integer, AmeacaAVida> mapaAmeacaAVida = new HashMap<Integer, AmeacaAVida>();
-    private static Integer id = 1;
 
-    public static void incluir(AmeacaAVida ameacaAVida){
-        ameacaAVida.setId(id++);
-        mapaAmeacaAVida.put(ameacaAVida.getId(), ameacaAVida);
+    @Autowired
+    private AmeacaAVidaService ameacaAVidaService;
 
-        AppImpressao.relatorio(ameacaAVida, "ATENCAO!!! VIDA EM RISCO!");
-    }
+    @Autowired
+    private VitimaService vitimaService;
 
-    public static Collection<AmeacaAVida> obterList(){
-        return mapaAmeacaAVida.values();
-    }
 
-    public static void excluir(Integer id){
-        mapaAmeacaAVida.remove(id);
-    }
     @GetMapping(value="/ameacaavida/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", obterList());
+        model.addAttribute("listagem", ameacaAVidaService.obterList());
 
         return "ameacaavida/lista";
+    }
+
+    @GetMapping(value="/ameacaavida")
+    public String telaCadastro(Model model){
+        model.addAttribute("vitima", vitimaService.obterList());
+
+        return "ameacaavida/cadastro";
     }
 
     @GetMapping(value = "/ameacaavida/{id}/excluir")
     public String exclusao(@PathVariable Integer id){
 
-        excluir(id);
+        ameacaAVidaService.excluir(id);
+
+        return "redirect:/ameacaavida/lista";
+    }
+
+    @PostMapping(value = "/ameacaavida/incluir")
+    public String inclusao(AmeacaAVida ameacaAVida, @RequestParam("statusVitimaItem") String statusVitimaItem,
+                            @RequestParam("idVitima") Integer idVitima){
+        ameacaAVida.setStatusVitima(new ArrayList<>());
+        ameacaAVida.setVitimas(new ArrayList<>());
+
+        ameacaAVida.addStatus(statusVitimaItem);
+
+        Vitima objVitima = vitimaService.getVitimaById(idVitima);
+
+        ameacaAVida.addVitima(objVitima);
+
+        ameacaAVidaService.incluir(ameacaAVida);
 
         return "redirect:/ameacaavida/lista";
     }

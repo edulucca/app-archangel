@@ -26,6 +26,7 @@ pageEncoding="UTF-8"%>
             <th>statusVitima</th>
             <th>Vítima</th>
             <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -37,6 +38,7 @@ pageEncoding="UTF-8"%>
                 <td>${c.statusVitima}</td>
                 <td>${c.vitimas}</td>
                 <td><a href="/ameacaavida/${c.id}/excluir">Excluir</a></td>
+                <td><a href="/ameacaavida">Cadastrar</a></td>
             </tr>
         </c:forEach>
         </tbody>

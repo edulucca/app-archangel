@@ -5,6 +5,8 @@ import br.edu.infnet.apparchangel.model.domain.AmeacaAVida;
 import br.edu.infnet.apparchangel.model.domain.Emergencia;
 import br.edu.infnet.apparchangel.model.domain.Vitima;
 import br.edu.infnet.apparchangel.model.exception.NumeroDeVitimasInvalidas;
+import br.edu.infnet.apparchangel.model.service.AmeacaAVidaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,8 @@ import java.util.List;
 @Component
 public class AmeacaAVidaTeste implements ApplicationRunner {
 
+    @Autowired
+    private AmeacaAVidaService ameacaAVidaService;
     @Override
     public void run(ApplicationArguments args) {
 
@@ -46,7 +50,7 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
 
                         System.out.println("Definicao da Escala de Risco: " + a1.definirEscalaDeRisco());
 
-                        AmeacaAVidaController.incluir(a1);
+                        ameacaAVidaService.incluir(a1);
                     } catch (NumeroDeVitimasInvalidas e) {
                         System.out.println("[ERROR - AMEACAAVIDA] " + e.getMessage());
                     }

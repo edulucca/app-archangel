@@ -2,6 +2,8 @@ package br.edu.infnet.apparchangel.model.test;
 
 import br.edu.infnet.apparchangel.controller.RequisitanteController;
 import br.edu.infnet.apparchangel.model.domain.Requisitante;
+import br.edu.infnet.apparchangel.model.service.RequisitanteService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -13,6 +15,9 @@ import java.io.IOException;
 
 @Component
 public class RequisitanteTeste implements ApplicationRunner {
+
+    @Autowired
+    private RequisitanteService requisitanteService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -30,7 +35,7 @@ public class RequisitanteTeste implements ApplicationRunner {
                     try {
                         String[] campo = linha.split(";");
                         Requisitante r1 = new Requisitante(campo[0],campo[1], campo[2]);
-                        RequisitanteController.incluir(r1);
+                        requisitanteService.incluir(r1);
                     } catch (Exception e) {
                         System.out.println("[ERROR] " + e.getMessage());
                     }

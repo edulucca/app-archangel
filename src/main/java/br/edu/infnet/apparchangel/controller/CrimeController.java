@@ -8,7 +8,9 @@ import br.edu.infnet.apparchangel.model.domain.Crime;
 
 import java.util.*;
 
+import br.edu.infnet.apparchangel.model.service.CrimeService;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,29 +23,12 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class CrimeController {
-    
-    private static List<Crime> crimes = new ArrayList<Crime>();
 
-    private static Map<Integer, Crime> mapaCrime = new HashMap<Integer, Crime>();
-    private static Integer id = 1;
-    public static void incluir(Crime crime){
-        crime.setId(id++);
-
-        mapaCrime.put(crime.getId(), crime);
-
-        AppImpressao.relatorio(crime, "CRIME OCORRENDO NESTE MOMENTO!");
-    }
-
-    public static Collection<Crime> obterList(){
-        return mapaCrime.values();
-    }
-    public static void excluir(Integer id){
-        mapaCrime.remove(id);
-    }
-
+    @Autowired
+    private CrimeService crimeService;
     @GetMapping(value="/crime/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", obterList());
+        model.addAttribute("listagem", crimeService.obterList());
         return "crime/lista";
     }
 
@@ -55,7 +40,7 @@ public class CrimeController {
 
     @PostMapping(value = "/crime/incluir")
     public String inclusao(Crime crime){
-        incluir(crime);
+        crimeService.incluir(crime);
 
         System.out.println(crime.isArmaBranca());
         System.out.println(crime.isArmaDeFogo());
@@ -66,7 +51,7 @@ public class CrimeController {
     @GetMapping(value = "/crime/{id}/excluir")
     public String exclusao(@PathVariable Integer id){
 
-        excluir(id);
+        crimeService.excluir(id);
 
         return "redirect:/crime/lista";
     }

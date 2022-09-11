@@ -14,8 +14,6 @@ pageEncoding="UTF-8"%>
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 <div class="container mt-3">
-    <h2>AppArchAngel</h2>
-    <p>Software para gerar alertas e gerenciar emergências</p>
 
     <h3>Cadastramento de usuários</h3>
     <table class="table table-striped">

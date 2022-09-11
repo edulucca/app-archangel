@@ -3,6 +3,8 @@ package br.edu.infnet.apparchangel.model.test;
 import br.edu.infnet.apparchangel.controller.PatrimonioController;
 import br.edu.infnet.apparchangel.model.domain.Patrimonio;
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMaiorQueTresException;
+import br.edu.infnet.apparchangel.model.service.PatrimonioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -14,6 +16,8 @@ import java.io.IOException;
 
 @Component
 public class PatrimonioTeste implements ApplicationRunner {
+    @Autowired
+    private PatrimonioService patrimonioService;
 
     @Override
     public void run(ApplicationArguments args){
@@ -34,7 +38,9 @@ public class PatrimonioTeste implements ApplicationRunner {
                         Patrimonio p1 = new Patrimonio(Integer.parseInt(campo[0]),campo[1], campo[2]);
                         p1.setEscalaDeRisco(1);
                         System.out.println(p1.definirEscalaDeRisco());
-                        PatrimonioController.incluir(p1);
+
+                        patrimonioService.incluir(p1);
+
                     } catch (EscalaDeRiscoMaiorQueTresException e) {
                         System.out.println("[ERROR - PATRIMONIO] " + e.getMessage());
                     }

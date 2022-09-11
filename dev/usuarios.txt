@@ -1,0 +1,4 @@
+eduardo;eduardo@gmail.com;123
+bruna;bruna@gmail.com;321
+marcos;marcos@gmail.com;456
+marieth;marieth@gmail.com;654

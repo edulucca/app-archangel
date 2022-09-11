@@ -8,6 +8,8 @@ public class Vitima implements IPrinter {
     private String nomeDaMae;
     private String idade;
 
+    public Vitima(){
+    }
     public Vitima(String nome, String nomeDaMae, String idade) {
         this.nome = nome;
         this.nomeDaMae = nomeDaMae;

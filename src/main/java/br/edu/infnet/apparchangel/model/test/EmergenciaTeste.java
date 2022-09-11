@@ -20,6 +20,8 @@ import java.util.Set;
 import br.edu.infnet.apparchangel.model.exception.CpfInvalidoException;
 import br.edu.infnet.apparchangel.model.exception.CriseVaziaException;
 import br.edu.infnet.apparchangel.model.exception.RequisitanteNuloException;
+import br.edu.infnet.apparchangel.model.service.EmergenciaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -30,7 +32,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class EmergenciaTeste implements ApplicationRunner {
-
+    @Autowired
+    EmergenciaService emergenciaService;
     @Override
     public void run(ApplicationArguments args){
         //Declaração de variáveis
@@ -59,7 +62,7 @@ public class EmergenciaTeste implements ApplicationRunner {
 
 
 
-                        EmergenciaController.incluir(new Emergencia(campos[0], campos[1], r1, listaDeCrises));
+                        emergenciaService.incluir(new Emergencia(campos[0], campos[1], r1, listaDeCrises));
 
                     } catch (RequisitanteNuloException | CriseVaziaException e) {
                         System.out.println("[ERROR - PEDIDO] " + e.getMessage());

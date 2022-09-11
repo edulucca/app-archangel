@@ -12,28 +12,42 @@ pageEncoding="UTF-8"%>
 <body>
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 <div class="container mt-3">
-  <h2>Cadastrar Crime</h2>
-  <form action="/crime/incluir" method="POST">
-    <div class="mb-3 mt-3">
-        <label>Número de Vítimas:</label>
-        <input type="number" class="form-control" placeholder="Entre com o número de vítimas" name="nrVitimas">
-    </div>
+    <h2>Cadastrar Ameaça a Vida</h2>
+    <form action="/ameacaavida/incluir" method="POST">
+        <div class="mb-3 mt-3">
+            <label>Número de Vítimas:</label>
+            <input type="number" class="form-control" placeholder="Entre com o número de vítimas" name="nrVitima">
+        </div>
 
-    <div class="mb-3 mt-3">
-      <label>Ferimento:</label>
-      <input type="text" class="form-control" placeholder="Entre com o ferimento da vítima" name="tipoFerimento">
-    </div>
+        <div class="mb-3 mt-3">
+            <label>Ferimento:</label>
+            <input type="text" class="form-control" placeholder="Entre com o ferimento da vítima" name="tipoFerimento">
+        </div>
 
-    <select class="form-select" aria-label="Default select example">
-      <option selected>Open this select menu</option>
-      <option value="Acordada">Acordada</option>
-      <option value="Desacordada">Desacordada</option>
-      <option value="Em Choque">Em Choque</option>
-      <option value="Sem Sinais Vitais">Sem Sinais Vitais</option>
-    </select>
+        <div class="mb-3 mt-3">
+            <label>Estado da Vítima:</label>
+            <select class="form-select" name="statusVitimaItem">
+                <option selected>Open this select menu</option>
+                <option value="Acordada">Acordada</option>
+                <option value="Desacordada">Desacordada</option>
+                <option value="Em Choque">Em Choque</option>
+                <option value="Sem Sinais Vitais">Sem Sinais Vitais</option>
+            </select>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-  </form>
+        <div class="mb-3 mt-3" >
+            <label>Vítima:</label>
+            <select class="form-select" name="idVitima">
+                <option selected>Open this select menu</option>
+                <c:forEach var="v" items="${vitima}">
+                    <option value="${v.id}">${v}</option>
+                </c:forEach>
+            </select>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+
+    </form>
 </div>
 </body>
 </html>

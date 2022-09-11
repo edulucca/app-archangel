@@ -5,7 +5,9 @@
 package br.edu.infnet.apparchangel.controller;
 
 import br.edu.infnet.apparchangel.model.domain.*;
+import br.edu.infnet.apparchangel.model.service.EmergenciaService;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,35 +21,19 @@ import java.util.*;
  */
 @Controller
 public class EmergenciaController {
-    private static final Map<Integer, Emergencia> mapaEmergencia = new HashMap<Integer, Emergencia>();
-    private static Integer id = 1;
+    @Autowired
+    private EmergenciaService emergenciaService;
 
-    public static void incluir(Emergencia emergencia) {
-        emergencia.setId(id++);
-
-        mapaEmergencia.put(emergencia.getId(), emergencia);
-
-        AppImpressao.relatorio(emergencia, "Dados da emergencia:");
-
-    }
-
-    public static void excluir(Integer id){
-        mapaEmergencia.remove(id);
-    }
-
-    public static Collection<Emergencia> obterList(){
-        return mapaEmergencia.values();
-    }
     @GetMapping(value="/emergencia/lista")
     public String telaLista(Model model){
-        model.addAttribute("listagem", obterList());
+        model.addAttribute("listagem", emergenciaService.obterList());
         return "emergencia/lista";
     }
 
     @GetMapping(value = "/emergencia/{id}/excluir")
     public String exclusao(@PathVariable Integer id){
 
-        excluir(id);
+        emergenciaService.excluir(id);
 
         return "redirect:/emergencia/lista";
     }

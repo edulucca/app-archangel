@@ -1,7 +1,10 @@
 package br.edu.infnet.apparchangel.controller;
 
 import br.edu.infnet.apparchangel.model.domain.Usuario;
+import br.edu.infnet.apparchangel.model.domain.app.Projeto;
+import br.edu.infnet.apparchangel.model.service.AppService;
 import br.edu.infnet.apparchangel.model.service.UsuarioService;
+import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +23,13 @@ public class AppController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private AppService appService;
+
     @GetMapping(value = "/")
-    public String telaHome() {
+    public String telaHome(Model model) {
+        model.addAttribute("projeto", appService.obterProjeto());
+
         return "home";
     }
 

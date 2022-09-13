@@ -1,0 +1,30 @@
+P;AppEmergencia;Software para gerar alertas e gerenciar emergências
+C;Emergencia
+A;localizacao;String;Dados da localização da emergência
+A;status;String;Apresenta em qual fase a emergência se apresenta no momento atual
+A;dataHora;LocalDateTime;Registro da data e da hora de quando a emergência é acionada
+C;Requisitante
+A;nome;String;Nome do requisitante (responsável por registrar a emergência)
+A;cpf;String;CPF do requisitante
+A;telefone;String;Número de celular do requisitante
+C;Vitima
+A;nome;String;Nome da vítima envolvida na crise.
+A;nomeDaMae;String;Nome da Mãe da vítima para fins de identificação
+A;idade;String;Idade da vítima
+C;Crise
+A;escalaDeRisco;int;Define de 0 a 5 o risco da crise
+A;nome;String;Apelido da crise
+A;descricao;String;Apresenta informações gerais sobre a crise (como iniciou, seus motivos, possíveis agentes responáveis)
+C;AmeacaAVida
+A;nrVitima;int;Contabiliza o numero de vítimas em crises que geram lesão ou risco de vida
+A;tipoFerimento;String;Descreve informações gerais sofre o ferimento
+A;statusVitima;List String;Checklist com dados selecionáveis indicando o possível estado de saúde da vítima
+C;Patrimonio
+A;nrPatrimonio;int;Contabiliza o numero de patrimônios atingidos ou em riscos de perda total
+A;tipo;String;Dica qual o tipo de patrimônio em risco (ex.: Moradia, Veículo, Comércio, Ambiental)
+A;agenteDeRisco;String;Define qual o agente danoso ao patrimônio (ex.: fogo, força física, água, pragas)
+C;Crime
+A;nrVitimas;int;Contabiliza o numero de vítimas de um ato criminoso
+A;nrSuspeitos;String;Contabiliza o numero de possíveis suspeitos de um ato criminoso
+A;armaBranca;boolean;Indica se o ato criminoso envolve o uso de armas brancas
+A;armaDeFogo;boolean;Indica se o ato criminoso envolve o uso de armas de fogo

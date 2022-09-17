@@ -18,11 +18,12 @@ pageEncoding="UTF-8"%>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
     <h3>Classe: Patrimonio</h3>
+    <h4><a href="/patrimonio">Novo</a></h4>
     <table class="table table-striped">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Numero de Patrimonios</th>
+            <th>Numero de Patrimônios</th>
             <th>Tipo</th>
             <th>Agente de Risco</th>
             <th></th>

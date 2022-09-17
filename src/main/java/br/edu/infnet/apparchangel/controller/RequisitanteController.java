@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
@@ -34,6 +35,17 @@ public class RequisitanteController {
 
         requisitanteService.excluir(id);
 
+        return "redirect:/requisitante/lista";
+    }
+
+    @GetMapping("/requisitante")
+    public String telaCadastro(){
+        return "requisitante/cadastro";
+    }
+
+    @PostMapping("/requisitante/incluir")
+    public String incluir(Requisitante requisitante){
+        requisitanteService.incluir(requisitante);
         return "redirect:/requisitante/lista";
     }
 }

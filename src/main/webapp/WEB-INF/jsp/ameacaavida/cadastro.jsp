@@ -14,6 +14,8 @@ pageEncoding="UTF-8"%>
 <div class="container mt-3">
     <h2>Cadastrar Ameaça a Vida</h2>
     <form action="/ameacaavida/incluir" method="POST">
+        <c:import url="/WEB-INF/jsp/crise/cadastro.jsp"/>
+
         <div class="mb-3 mt-3">
             <label>Número de Vítimas:</label>
             <input type="number" class="form-control" placeholder="Entre com o número de vítimas" name="nrVitima">

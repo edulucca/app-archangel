@@ -17,6 +17,7 @@ pageEncoding="UTF-8"%>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
     <h3>Classe: AmeacaAVida</h3>
+    <h4><a href="/ameacaavida">Cadastrar</a></h4>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -25,7 +26,6 @@ pageEncoding="UTF-8"%>
             <th>tipoFerimento</th>
             <th>statusVitima</th>
             <th>Vítima</th>
-            <th></th>
             <th></th>
         </tr>
         </thead>
@@ -38,7 +38,6 @@ pageEncoding="UTF-8"%>
                 <td>${c.statusVitima}</td>
                 <td>${c.vitimas}</td>
                 <td><a href="/ameacaavida/${c.id}/excluir">Excluir</a></td>
-                <td><a href="/ameacaavida">Cadastrar</a></td>
             </tr>
         </c:forEach>
         </tbody>

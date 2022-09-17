@@ -15,18 +15,18 @@ public class RequisitanteService {
     private static Integer id = 1;
 
 
-    public static void incluir(Requisitante requisitante) {
+    public void incluir(Requisitante requisitante) {
         requisitante.setId(id++);
         mapaRequisitante.put(requisitante.getId(), requisitante);
 
         AppImpressao.relatorio(requisitante, "Dados do requisitante:");
     }
 
-    public static void excluir(Integer id){
+    public void excluir(Integer id){
         mapaRequisitante.remove(id);
     }
 
-    public static Collection<Requisitante> obterList(){
+    public Collection<Requisitante> obterList(){
         return mapaRequisitante.values();
     }
 }

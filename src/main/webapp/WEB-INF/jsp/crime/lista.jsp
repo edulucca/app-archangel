@@ -17,6 +17,7 @@ pageEncoding="UTF-8"%>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
     <h3>Classe: Crime</h3>
+    <h4><a href="/crime">Novo</a></h4>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -38,7 +39,6 @@ pageEncoding="UTF-8"%>
                     <td>${c.armaBranca}</td>
                     <td>${c.armaDeFogo}</td>
                     <td><a href="/crime/${c.id}/excluir">Excluir</a></td>
-                    <td><a href="/crime">Cadastrar</a></td>
                 </tr>
             </c:forEach>
         </tbody>

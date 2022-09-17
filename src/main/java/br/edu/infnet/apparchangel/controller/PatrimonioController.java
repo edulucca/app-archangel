@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
@@ -37,6 +38,17 @@ public class PatrimonioController {
 
         patrimonioService.excluir(id);
 
+        return "redirect:/patrimonio/lista";
+    }
+
+    @GetMapping(value = "/patrimonio")
+    public String telaCadastro(){
+        return "patrimonio/cadastro";
+    }
+
+    @PostMapping(value = "/patrimonio/incluir")
+    public String incluir(Patrimonio patrimonio){
+        patrimonioService.incluir(patrimonio);
         return "redirect:/patrimonio/lista";
     }
 }

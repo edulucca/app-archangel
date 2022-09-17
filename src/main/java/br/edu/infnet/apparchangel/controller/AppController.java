@@ -47,7 +47,7 @@ public class AppController {
 
 
             model.addAttribute("user", usuario);
-            return "home";
+            return "redirect:/";
         }
         return "login";
     }

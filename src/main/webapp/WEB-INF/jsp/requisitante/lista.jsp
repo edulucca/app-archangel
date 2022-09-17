@@ -16,6 +16,7 @@ pageEncoding="UTF-8"%>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
     <h3>Classe: Requisitante</h3>
+    <h4><a href="/requisitante">Novo</a></h4>
     <table class="table table-striped">
         <thead>
         <tr>

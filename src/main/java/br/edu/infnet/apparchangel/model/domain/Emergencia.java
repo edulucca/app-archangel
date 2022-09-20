@@ -16,13 +16,13 @@ public class Emergencia implements IPrinter{
     private Requisitante requisitante;
     private Set<Crise> crises;
 
-    public Emergencia(String localizacao, String status, Requisitante requisitante, Set<Crise> crises) throws RequisitanteNuloException, CriseVaziaException {
+    public Emergencia(String localizacao, String status, Requisitante requisitante, Set<Crise> crises) throws RequisitanteNuloException {
         if(requisitante == null){
             throw new RequisitanteNuloException("O Requisitante não pode ser nulo");
         }
-        if(crises.isEmpty()){
-            throw new CriseVaziaException("A quantidade de Crises tem que ser maior que um");
-        }
+        //if(crises.isEmpty()){
+        //    throw new CriseVaziaException("A quantidade de Crises tem que ser maior que um");
+        //}
         this.localizacao = localizacao;
         this.status = status;
         this.dataHora = LocalDateTime.now();

@@ -24,7 +24,7 @@ public class CrimeTeste implements ApplicationRunner {
     public void run(ApplicationArguments args) {
 
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
-        String arq = "crimes.txt";
+        String arq = "crises.txt";
 
         try{
             try {
@@ -33,14 +33,20 @@ public class CrimeTeste implements ApplicationRunner {
                 //Processamento
                 String linha = leitor.readLine();
 
+
+
                 while(linha != null){
                     try {
                         String[] campo = linha.split(";");
-                        Crime c1 = new Crime(Integer.parseInt(campo[0]), Integer.parseInt(campo[1]), Boolean.parseBoolean(campo[2]),
-                                            Boolean.parseBoolean(campo[3]));
-                        c1.setEscalaDeRisco(2);
-                        System.out.println("Definicao da Escala de Risco: " + c1.definirEscalaDeRisco());
-                        crimeService.incluir(c1);
+
+                        if(campo[0].equalsIgnoreCase("C")){
+                            Crime c1 = new Crime(Integer.parseInt(campo[1]), Integer.parseInt(campo[2]), Boolean.parseBoolean(campo[3]),
+                                    Boolean.parseBoolean(campo[4]));
+                            c1.setEscalaDeRisco(2);
+                            c1.setNome("Crime - " + campo[5]);
+                            System.out.println("Definicao da Escala de Risco: " + c1.definirEscalaDeRisco());
+                            crimeService.incluir(c1);
+                        }
                     } catch (EscalaDeRiscoMenorQueZeroException e) {
                         System.out.println("[ERROR - CRIME] " + e.getMessage());
                     }

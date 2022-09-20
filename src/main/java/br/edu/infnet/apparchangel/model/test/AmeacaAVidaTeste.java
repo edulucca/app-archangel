@@ -30,7 +30,7 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
 
 
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
-        String arq = "ameacaavidas.txt";
+        String arq = "crises.txt";
         try{
             try {
                 BufferedReader leitor = new BufferedReader(new FileReader(dir+arq));
@@ -41,16 +41,22 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
 
                     try {
                         String campo[] = linha.split(";");
-                        AmeacaAVida a1 = new AmeacaAVida(Integer.parseInt(campo[0]),
-                                campo[1], new ArrayList<String>(),
-                                new ArrayList<Vitima>());
-                        a1.addVitima(new Vitima(campo[4], campo[5], campo[3]));
-                        a1.getStatusVitima().add(campo[2]);
-                        a1.setEscalaDeRisco(Integer.parseInt(campo[3]));
 
-                        System.out.println("Definicao da Escala de Risco: " + a1.definirEscalaDeRisco());
+                        if(campo[0].equalsIgnoreCase("A")){
+                            AmeacaAVida a1 = new AmeacaAVida(Integer.parseInt(campo[1]),
+                                    campo[1], new ArrayList<String>(),
+                                    new ArrayList<Vitima>());
+                            a1.addVitima(new Vitima(campo[5], campo[6], campo[4]));
+                            a1.getStatusVitima().add(campo[3]);
+                            a1.setEscalaDeRisco(Integer.parseInt(campo[4]));
 
-                        ameacaAVidaService.incluir(a1);
+                            a1.setNome("Ameaça a Vida - " + campo[8]);
+
+                            System.out.println("Definicao da Escala de Risco: " + a1.definirEscalaDeRisco());
+
+                            ameacaAVidaService.incluir(a1);
+                        }
+
                     } catch (NumeroDeVitimasInvalidas e) {
                         System.out.println("[ERROR - AMEACAAVIDA] " + e.getMessage());
                     }

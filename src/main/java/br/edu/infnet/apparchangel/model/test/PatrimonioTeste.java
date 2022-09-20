@@ -22,7 +22,7 @@ public class PatrimonioTeste implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args){
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
-        String arq = "patrimonios.txt";
+        String arq = "crises.txt";
 
         try{
             try {
@@ -35,11 +35,16 @@ public class PatrimonioTeste implements ApplicationRunner {
                     try {
                         String[] campo = linha.split(";");
 
-                        Patrimonio p1 = new Patrimonio(Integer.parseInt(campo[0]),campo[1], campo[2]);
-                        p1.setEscalaDeRisco(1);
-                        System.out.println(p1.definirEscalaDeRisco());
+                        if(campo[0].equalsIgnoreCase("P")){
+                            Patrimonio p1 = new Patrimonio(Integer.parseInt(campo[1]),campo[2], campo[3]);
+                            p1.setEscalaDeRisco(1);
+                            p1.setNome("Dano ao Patrimonio - " + campo[4]);
+                            System.out.println(p1.definirEscalaDeRisco());
 
-                        patrimonioService.incluir(p1);
+                            patrimonioService.incluir(p1);
+                        }
+
+
 
                     } catch (EscalaDeRiscoMaiorQueTresException e) {
                         System.out.println("[ERROR - PATRIMONIO] " + e.getMessage());

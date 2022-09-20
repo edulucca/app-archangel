@@ -19,6 +19,7 @@ import java.util.Set;
 
 import br.edu.infnet.apparchangel.model.exception.CpfInvalidoException;
 import br.edu.infnet.apparchangel.model.exception.CriseVaziaException;
+import br.edu.infnet.apparchangel.model.exception.NumeroDeVitimasInvalidas;
 import br.edu.infnet.apparchangel.model.exception.RequisitanteNuloException;
 import br.edu.infnet.apparchangel.model.service.EmergenciaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,48 +28,88 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 /**
- *
  * @author eduardo.s.santana
  */
 @Component
 public class EmergenciaTeste implements ApplicationRunner {
     @Autowired
     EmergenciaService emergenciaService;
+
     @Override
-    public void run(ApplicationArguments args){
+    public void run(ApplicationArguments args) {
         //Declaração de variáveis
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
         String arq = "emergencias.txt";
 
-        try{
+        try {
             try {
-                BufferedReader leitor = new BufferedReader(new FileReader(dir+arq));
+                BufferedReader leitor = new BufferedReader(new FileReader(dir + arq));
 
                 //Processamento
                 String linha = leitor.readLine();
+                Set<Crise> crises = null;
+                List<Emergencia> emergencias = new ArrayList<Emergencia>();
 
-                while(linha != null){
-                    try {
-                        String[] campos = linha.split(";");
-                        Requisitante r1 = new Requisitante();
-                        r1.setNome(campos[2]);
-                        r1.setCpf(campos[3]);
-                        r1.setTelefone(campos[4]);
+                while (linha != null) {
+
+                    String[] campos = linha.split(";");
+
+                    switch (campos[0].toUpperCase()) {
+                        case "E":
+                            try {
+
+                                Requisitante r1 = new Requisitante();
+                                r1.setNome(campos[3]);
+                                r1.setCpf(campos[4]);
+                                r1.setTelefone(campos[5]);
 
 
-                        Set<Crise> listaDeCrises = new HashSet<Crise>();
-                        listaDeCrises.add(new Crime(2, 1, true, false));
-                        listaDeCrises.add(new AmeacaAVida(3, "Fratura exposta", new ArrayList<String>(), new ArrayList<Vitima>()));
+                                crises = new HashSet<Crise>();
 
+                                emergencias.add(new Emergencia(campos[1], campos[2], r1, crises));
+                            } catch (RequisitanteNuloException  e) {
+                                System.out.println("[ERROR - EMERGENCIA] " + e.getMessage());
+                            }
+                            break;
 
+                        case "A":
+                            try {
+                                AmeacaAVida ameacaAVida = new AmeacaAVida(Integer.parseInt(campos[1]), campos[2], new ArrayList<String>(), new ArrayList<Vitima>());
 
-                        emergenciaService.incluir(new Emergencia(campos[0], campos[1], r1, listaDeCrises));
+                                ameacaAVida.addVitima(new Vitima(campos[5], campos[6], campos[4]));
+                                ameacaAVida.getStatusVitima().add(campos[3]);
+                                ameacaAVida.setEscalaDeRisco(Integer.parseInt(campos[4]));
+                                ameacaAVida.definirEscalaDeRisco();
+                                ameacaAVida.setNome(campos[7]);
 
-                    } catch (RequisitanteNuloException | CriseVaziaException e) {
-                        System.out.println("[ERROR - PEDIDO] " + e.getMessage());
+                                crises.add(ameacaAVida);
+
+                            } catch (NumeroDeVitimasInvalidas e) {
+                                System.out.println("[ERROR - AMEACAAVIDA] " + e.getMessage());
+                            }
+                            break;
+
+                        case "C":
+                            Crime crime = new Crime(Integer.parseInt(campos[1]), Integer.parseInt(campos[2]), Boolean.parseBoolean(campos[3]), Boolean.parseBoolean(campos[4]));
+                            crime.setNome(campos[5]);
+                            crises.add(crime);
+                            break;
+
+                        case "P":
+                            Patrimonio patrimonio = new Patrimonio(Integer.parseInt(campos[1]), campos[2], campos[3]);
+                            patrimonio.setNome(campos[4]);
+                            crises.add(patrimonio);
+                            break;
+
+                        default:
+                            break;
                     }
 
                     linha = leitor.readLine();
+                }
+
+                for (Emergencia e : emergencias) {
+                    emergenciaService.incluir(e);
                 }
 
                 //Close
@@ -78,10 +119,10 @@ public class EmergenciaTeste implements ApplicationRunner {
             } catch (IOException e) {
                 System.out.println("[ERROR] Problema ao fechar o arquivo");
             }
-        }finally {
+        } finally {
             System.out.println("Terminou!!!");
         }
 
     }
-    
+
 }

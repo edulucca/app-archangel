@@ -4,19 +4,17 @@
  */
 package br.edu.infnet.apparchangel.controller;
 
-import br.edu.infnet.apparchangel.model.domain.*;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
+import br.edu.infnet.apparchangel.model.service.CriseService;
 import br.edu.infnet.apparchangel.model.service.EmergenciaService;
 import br.edu.infnet.apparchangel.model.service.RequisitanteService;
-import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.codec.StringDecoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.*;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 /**
  *
@@ -40,9 +38,9 @@ public class EmergenciaController {
     }
 
     @GetMapping(value="/emergencia")
-    public String telaCadastro(Model model){
-        model.addAttribute("requisitantes", requisitanteService.obterList());
-        model.addAttribute("crises", criseService.obterList());
+    public String telaCadastro(Model model, @SessionAttribute("user")Usuario usuario){
+        model.addAttribute("requisitantes", requisitanteService.obterList(usuario));
+        model.addAttribute("crises", criseService.obterList(usuario));
         return "emergencia/cadastro";
     }
 

@@ -8,6 +8,7 @@ import br.edu.infnet.apparchangel.model.domain.Crime;
 
 import java.util.*;
 
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.service.CrimeService;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 /**
  *
@@ -27,8 +29,8 @@ public class CrimeController {
     @Autowired
     private CrimeService crimeService;
     @GetMapping(value="/crime/lista")
-    public String telaLista(Model model){
-        model.addAttribute("listagem", crimeService.obterList());
+    public String telaLista(Model model, @SessionAttribute("user")Usuario usuario){
+        model.addAttribute("listagem", crimeService.obterList(usuario));
         return "crime/lista";
     }
 
@@ -39,11 +41,9 @@ public class CrimeController {
     }
 
     @PostMapping(value = "/crime/incluir")
-    public String inclusao(Crime crime){
+    public String inclusao(Crime crime, @SessionAttribute("user") Usuario usuario){
+        crime.setUsuario(usuario);
         crimeService.incluir(crime);
-
-        System.out.println(crime.isArmaBranca());
-        System.out.println(crime.isArmaDeFogo());
 
         return "redirect:/crime/lista";
     }

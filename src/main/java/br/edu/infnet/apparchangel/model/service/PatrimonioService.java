@@ -1,6 +1,7 @@
 package br.edu.infnet.apparchangel.model.service;
 
 import br.edu.infnet.apparchangel.model.domain.Patrimonio;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.repository.PatrimonioRepository;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,9 @@ public class PatrimonioService {
 
     public Collection<Patrimonio> obterList(){
         return (Collection<Patrimonio>) patrimonioRepository.findAll();
+    }
+
+    public Collection<Patrimonio> obterList(Usuario usuario){
+        return (Collection<Patrimonio>) patrimonioRepository.findAll(usuario.getId());
     }
 }

@@ -2,6 +2,7 @@ package br.edu.infnet.apparchangel.model.test;
 
 import br.edu.infnet.apparchangel.controller.PatrimonioController;
 import br.edu.infnet.apparchangel.model.domain.Patrimonio;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMaiorQueTresException;
 import br.edu.infnet.apparchangel.model.service.PatrimonioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class PatrimonioTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args){
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
+
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
         String arq = "crises.txt";
 
@@ -39,6 +44,7 @@ public class PatrimonioTeste implements ApplicationRunner {
                             Patrimonio p1 = new Patrimonio(Integer.parseInt(campo[1]),campo[2], campo[3]);
                             p1.setEscalaDeRisco(1);
                             p1.setNome("Dano ao Patrimonio - " + campo[4]);
+                            p1.setUsuario(usuario);
                             System.out.println(p1.definirEscalaDeRisco());
 
                             patrimonioService.incluir(p1);

@@ -4,17 +4,32 @@ import br.edu.infnet.apparchangel.interfaces.IPrinter;
 import br.edu.infnet.apparchangel.model.exception.CriseVaziaException;
 import br.edu.infnet.apparchangel.model.exception.RequisitanteNuloException;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
-
+@Entity
+@Table(name = "TEmergencia")
 public class Emergencia implements IPrinter{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String localizacao;
     private String status;
     private LocalDateTime dataHora;
+
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idRequisitante")
     private Requisitante requisitante;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
     private Set<Crise> crises;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    public Emergencia() {
+    }
 
     public Emergencia(String localizacao, String status, Requisitante requisitante, Set<Crise> crises) throws RequisitanteNuloException {
         if(requisitante == null){
@@ -28,6 +43,14 @@ public class Emergencia implements IPrinter{
         this.dataHora = LocalDateTime.now();
         this.requisitante = requisitante;
         this.crises = crises;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Set<Crise> getCrises() {

@@ -1,6 +1,7 @@
 package br.edu.infnet.apparchangel.model.service;
 
 import br.edu.infnet.apparchangel.model.domain.Crime;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.repository.CrimeRepository;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,6 @@ import java.util.Map;
 public class CrimeService {
     @Autowired
     private CrimeRepository crimeRepository;
-    private static Map<Integer, Crime> mapaCrime = new HashMap<Integer, Crime>();
-    private static Integer id = 1;
 
     public void incluir(Crime crime){
         crimeRepository.save(crime);
@@ -25,6 +24,11 @@ public class CrimeService {
     public Collection<Crime> obterList(){
         return (Collection<Crime>) crimeRepository.findAll();
     }
+
+    public Collection<Crime> obterList(Usuario usuario){
+        return (Collection<Crime>) crimeRepository.findAll(usuario.getId());
+    }
+
     public void excluir(Integer id){
         crimeRepository.deleteById(id);
     }

@@ -30,6 +30,7 @@ pageEncoding="UTF-8"%>
                     <td>${c.escalaDeRisco}</td>
                     <td>${c.nome}</td>
                     <td>${c.descricao}</td>
+                    <td><a href="/crise/${c.id}/excluir">Excluir</a></td>
                 </tr>
             </c:forEach>
         </tbody>

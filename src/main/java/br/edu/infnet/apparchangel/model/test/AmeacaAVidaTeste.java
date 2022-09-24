@@ -3,6 +3,7 @@ package br.edu.infnet.apparchangel.model.test;
 import br.edu.infnet.apparchangel.controller.AmeacaAVidaController;
 import br.edu.infnet.apparchangel.model.domain.AmeacaAVida;
 import br.edu.infnet.apparchangel.model.domain.Emergencia;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.domain.Vitima;
 import br.edu.infnet.apparchangel.model.exception.NumeroDeVitimasInvalidas;
 import br.edu.infnet.apparchangel.model.service.AmeacaAVidaService;
@@ -26,7 +27,8 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
     private AmeacaAVidaService ameacaAVidaService;
     @Override
     public void run(ApplicationArguments args) {
-
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
 
 
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
@@ -51,6 +53,8 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
                             a1.setEscalaDeRisco(Integer.parseInt(campo[4]));
 
                             a1.setNome("Ameaça a Vida - " + campo[8]);
+
+                            a1.setUsuario(usuario);
 
                             System.out.println("Definicao da Escala de Risco: " + a1.definirEscalaDeRisco());
 

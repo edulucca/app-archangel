@@ -20,6 +20,14 @@ public class Usuario implements IPrinter{
     @JoinColumn(name = "idUsuario")
     private List<Requisitante> requisitantes;
 
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Crise> crises;
+
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Emergencia> emergencias;
+
     public Usuario(String nome, String email, String senha) throws CpfInvalidoException {
         if(email == null){
             throw new CpfInvalidoException("Não é possível criar CPF nulo");
@@ -34,6 +42,22 @@ public class Usuario implements IPrinter{
 
     public Usuario() {
 
+    }
+
+    public List<Emergencia> getEmergencias() {
+        return emergencias;
+    }
+
+    public void setEmergencias(List<Emergencia> emergencias) {
+        this.emergencias = emergencias;
+    }
+
+    public List<Crise> getCrises() {
+        return crises;
+    }
+
+    public void setCrises(List<Crise> crises) {
+        this.crises = crises;
     }
 
     public List<Requisitante> getRequisitantes() {

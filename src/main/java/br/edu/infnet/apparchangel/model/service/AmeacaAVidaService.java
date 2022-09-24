@@ -1,6 +1,7 @@
 package br.edu.infnet.apparchangel.model.service;
 
 import br.edu.infnet.apparchangel.model.domain.AmeacaAVida;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.repository.AmeacaAVidaRepository;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class AmeacaAVidaService {
     public Collection<AmeacaAVida> obterList()
     {
         return (Collection<AmeacaAVida>) ameacaAVidaRepository.findAll();
+    }
+
+    public Collection<AmeacaAVida> obterList(Usuario usuario)
+    {
+        return (Collection<AmeacaAVida>) ameacaAVidaRepository.findAll(usuario.getId());
     }
 
     public void excluir(Integer id){

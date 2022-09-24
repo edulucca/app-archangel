@@ -1,7 +1,10 @@
 package br.edu.infnet.apparchangel.model.service;
 
 import br.edu.infnet.apparchangel.model.domain.Emergencia;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
+import br.edu.infnet.apparchangel.model.repository.EmergenciaRepository;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -10,23 +13,27 @@ import java.util.Map;
 
 @Service
 public class EmergenciaService {
-    private static final Map<Integer, Emergencia> mapaEmergencia = new HashMap<Integer, Emergencia>();
-    private static Integer id = 1;
+    @Autowired
+    private EmergenciaRepository emergenciaRepository;
 
     public void incluir(Emergencia emergencia) {
-        emergencia.setId(id++);
+        emergenciaRepository.save(emergencia);
 
-        mapaEmergencia.put(emergencia.getId(), emergencia);
 
         AppImpressao.relatorio(emergencia, "Dados da emergencia:");
 
     }
 
     public void excluir(Integer id){
-        mapaEmergencia.remove(id);
+        emergenciaRepository.deleteById(id);
+
     }
 
     public Collection<Emergencia> obterList(){
-        return mapaEmergencia.values();
+        return (Collection<Emergencia>) emergenciaRepository.findAll();
+    }
+
+    public Collection<Emergencia> obterList(Usuario usuario){
+        return (Collection<Emergencia>) emergenciaRepository.findAll(usuario.getId());
     }
 }

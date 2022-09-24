@@ -2,6 +2,7 @@ package br.edu.infnet.apparchangel.model.test;
 
 import br.edu.infnet.apparchangel.controller.CrimeController;
 import br.edu.infnet.apparchangel.model.domain.Crime;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMenorQueZeroException;
 import br.edu.infnet.apparchangel.model.repository.CrimeRepository;
 import br.edu.infnet.apparchangel.model.service.CrimeService;
@@ -25,6 +26,8 @@ public class CrimeTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
 
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
         String arq = "crises.txt";
@@ -47,6 +50,7 @@ public class CrimeTeste implements ApplicationRunner {
                                     Boolean.parseBoolean(campo[4]));
                             c1.setEscalaDeRisco(2);
                             c1.setNome("Crime - " + campo[5]);
+                            c1.setUsuario(usuario);
                             System.out.println("Definicao da Escala de Risco: " + c1.definirEscalaDeRisco());
                             crimeService.incluir(c1);
                         }

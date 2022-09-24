@@ -37,6 +37,21 @@ public class EmergenciaTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        Set<Crise> produtos = new HashSet<Crise>();
+        Crime c1 = new Crime();
+        c1.setId(1);
+        c1.setNrSuspeitos(1);
+        Crime c2 = new Crime();
+        c2.setId(2);
+        c2.setNrSuspeitos(2);
+        Crime c3 = new Crime();
+        c3.setId(3);
+        c3.setNrSuspeitos(3);
+        produtos.add(c1);
+        produtos.add(c2);
+        produtos.add(c3);
+
+        /*
         //Declaração de variáveis
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
         String arq = "emergencias.txt";
@@ -122,7 +137,7 @@ public class EmergenciaTeste implements ApplicationRunner {
         } finally {
             System.out.println("Terminou!!!");
         }
-
+*/
     }
 
 }

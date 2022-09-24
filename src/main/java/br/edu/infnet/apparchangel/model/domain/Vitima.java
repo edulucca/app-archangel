@@ -2,11 +2,21 @@ package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "TVitima")
 public class Vitima implements IPrinter {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String nomeDaMae;
     private String idade;
+
+    @ManyToOne
+    @JoinColumn(name = "idAmeacaavida")
+    private AmeacaAVida ameacaAVida;
 
     public Vitima(){
     }

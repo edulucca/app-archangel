@@ -5,6 +5,7 @@
 package br.edu.infnet.apparchangel.controller;
 
 import br.edu.infnet.apparchangel.model.domain.Requisitante;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.service.RequisitanteService;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.*;
 
@@ -25,8 +27,9 @@ public class RequisitanteController {
     @Autowired
     private RequisitanteService requisitanteService;
     @GetMapping(value="/requisitante/lista")
-    public String telaLista(Model model){
-        model.addAttribute("listagem", requisitanteService.obterList());
+    public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
+        model.addAttribute("listagem", requisitanteService.obterList(usuario));
+
         return "requisitante/lista";
     }
 
@@ -44,7 +47,8 @@ public class RequisitanteController {
     }
 
     @PostMapping("/requisitante/incluir")
-    public String incluir(Requisitante requisitante){
+    public String incluir(Requisitante requisitante, @SessionAttribute("user")Usuario usuario){
+        requisitante.setUsuario(usuario);
         requisitanteService.incluir(requisitante);
         return "redirect:/requisitante/lista";
     }

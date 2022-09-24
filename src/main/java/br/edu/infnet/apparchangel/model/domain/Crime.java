@@ -2,11 +2,21 @@ package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMenorQueZeroException;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TCrime")
 public class Crime extends Crise{
     private Integer nrVitimas;
     private Integer nrSuspeitos;
     private boolean armaBranca;
     private boolean armaDeFogo;
+
+    public Crime() {
+    }
 
     public Crime(Integer nrVitimas, Integer nrSuspeitos, boolean armaBranca, boolean armaDeFogo) {
         this.nrVitimas = nrVitimas;

@@ -2,14 +2,24 @@ package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.model.exception.NumeroDeVitimasInvalidas;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "TAmeacaAVida")
 public class AmeacaAVida extends Crise{
     private Integer nrVitima;
     private String tipoFerimento;
+
+    @ElementCollection // 1
     private List<String> statusVitima;
 
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idAmeacaavida")
     private List<Vitima> vitimas;
+
+    public AmeacaAVida() {
+    }
 
     public AmeacaAVida(Integer nrVitima, String tipoFerimento, List<String> statusVitima, List<Vitima> vitimas) {
         this.nrVitima = nrVitima;

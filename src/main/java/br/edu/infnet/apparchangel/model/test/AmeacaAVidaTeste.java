@@ -44,7 +44,7 @@ public class AmeacaAVidaTeste implements ApplicationRunner {
 
                         if(campo[0].equalsIgnoreCase("A")){
                             AmeacaAVida a1 = new AmeacaAVida(Integer.parseInt(campo[1]),
-                                    campo[1], new ArrayList<String>(),
+                                    campo[2], new ArrayList<String>(),
                                     new ArrayList<Vitima>());
                             a1.addVitima(new Vitima(campo[5], campo[6], campo[4]));
                             a1.getStatusVitima().add(campo[3]);

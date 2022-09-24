@@ -3,11 +3,22 @@ package br.edu.infnet.apparchangel.model.domain;
 import br.edu.infnet.apparchangel.interfaces.IPrinter;
 import br.edu.infnet.apparchangel.model.exception.CpfInvalidoException;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "TUsuario")
 public class Usuario implements IPrinter{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String email;
     private String senha;
+
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Requisitante> requisitantes;
 
     public Usuario(String nome, String email, String senha) throws CpfInvalidoException {
         if(email == null){
@@ -23,6 +34,14 @@ public class Usuario implements IPrinter{
 
     public Usuario() {
 
+    }
+
+    public List<Requisitante> getRequisitantes() {
+        return requisitantes;
+    }
+
+    public void setRequisitantes(List<Requisitante> requisitantes) {
+        this.requisitantes = requisitantes;
     }
 
     public String getNome() {

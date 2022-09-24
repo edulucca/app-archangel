@@ -15,7 +15,7 @@ pageEncoding="UTF-8"%>
         </div>
 
         <div class="mb-3 mt-3">
-            <label>Agente de risco:</label>
+            <label>Descrição:</label>
             <textarea class="form-control" placeholder="Escreva uma breve descrição do incidente" rows="3"
                       name="descricao"></textarea>
         </div>

@@ -2,10 +2,17 @@ package br.edu.infnet.apparchangel.model.domain;
 
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMaiorQueTresException;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "TPatrimonio")
 public class Patrimonio extends Crise{
     private Integer nrPatrimonio;
     private String tipo;
     private String agenteDeRisco;
+
+    public Patrimonio() {
+    }
 
     public Patrimonio(Integer nrPatrimonio, String tipo, String agenteDeRisco) {
         this.nrPatrimonio = nrPatrimonio;

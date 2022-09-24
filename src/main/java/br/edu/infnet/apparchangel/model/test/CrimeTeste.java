@@ -3,11 +3,13 @@ package br.edu.infnet.apparchangel.model.test;
 import br.edu.infnet.apparchangel.controller.CrimeController;
 import br.edu.infnet.apparchangel.model.domain.Crime;
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMenorQueZeroException;
+import br.edu.infnet.apparchangel.model.repository.CrimeRepository;
 import br.edu.infnet.apparchangel.model.service.CrimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -19,6 +21,7 @@ public class CrimeTeste implements ApplicationRunner {
 
     @Autowired
     private CrimeService crimeService;
+
 
     @Override
     public void run(ApplicationArguments args) {

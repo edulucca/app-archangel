@@ -2,6 +2,7 @@ package br.edu.infnet.apparchangel.model.test;
 
 import br.edu.infnet.apparchangel.controller.RequisitanteController;
 import br.edu.infnet.apparchangel.model.domain.Requisitante;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.service.RequisitanteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,6 +22,8 @@ public class RequisitanteTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
 
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
         String arq = "requisitantes.txt";
@@ -35,6 +38,7 @@ public class RequisitanteTeste implements ApplicationRunner {
                     try {
                         String[] campo = linha.split(";");
                         Requisitante r1 = new Requisitante(campo[0],campo[1], campo[2]);
+                        r1.setUsuario(usuario);
                         requisitanteService.incluir(r1);
                     } catch (Exception e) {
                         System.out.println("[ERROR] " + e.getMessage());

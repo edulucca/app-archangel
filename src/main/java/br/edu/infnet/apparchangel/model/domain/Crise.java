@@ -5,9 +5,15 @@ import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMaiorQueTresExcep
 import br.edu.infnet.apparchangel.model.exception.EscalaDeRiscoMenorQueZeroException;
 import br.edu.infnet.apparchangel.model.exception.NumeroDeVitimasInvalidas;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "TCrise")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Crise implements IPrinter{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer escalaDeRisco;
     private String nome;

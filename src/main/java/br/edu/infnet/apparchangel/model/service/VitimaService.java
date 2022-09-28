@@ -1,5 +1,6 @@
 package br.edu.infnet.apparchangel.model.service;
 
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.domain.Vitima;
 import br.edu.infnet.apparchangel.model.repository.VitimaRepository;
 import br.edu.infnet.apparchangel.model.test.AppImpressao;
@@ -42,4 +43,9 @@ public class VitimaService {
         return (Collection<Vitima>) vitimaRepository.findAll();
     }
 
+    public Collection<Vitima> obterList(Usuario usuario){
+
+        return (Collection<Vitima>) vitimaRepository.findAll(usuario.getId());
+
+    }
 }

@@ -4,6 +4,8 @@
  */
 package br.edu.infnet.apparchangel.controller;
 
+import br.edu.infnet.apparchangel.model.domain.Crise;
+import br.edu.infnet.apparchangel.model.domain.Emergencia;
 import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.service.CriseService;
 import br.edu.infnet.apparchangel.model.service.EmergenciaService;
@@ -30,10 +32,12 @@ public class EmergenciaController {
 
     @Autowired
     private CriseService criseService;
+    private String mensagem;
+    private String tipo;
 
     @GetMapping(value="/emergencia/lista")
-    public String telaLista(Model model){
-        model.addAttribute("listagem", emergenciaService.obterList());
+    public String telaLista(Model model, @SessionAttribute("user")Usuario usuario){
+        model.addAttribute("listagem", emergenciaService.obterList(usuario));
         return "emergencia/lista";
     }
 
@@ -41,19 +45,33 @@ public class EmergenciaController {
     public String telaCadastro(Model model, @SessionAttribute("user")Usuario usuario){
         model.addAttribute("requisitantes", requisitanteService.obterList(usuario));
         model.addAttribute("crises", criseService.obterList(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
         return "emergencia/cadastro";
     }
 
     @PostMapping(value = "/emergencia/incluir")
-    public String incluir(){
+    public String incluir(Emergencia emergencia, @SessionAttribute("user") Usuario usuario){
+        emergencia.setUsuario(usuario);
 
+        mensagem = "Inclusão da Emergência " + emergencia.getId() + " realizada com sucesso!!!";
+        tipo = "alert-success";
+
+        emergenciaService.incluir(emergencia);
         return "redirect:/emergencia/lista";
     }
 
     @GetMapping(value = "/emergencia/{id}/excluir")
-    public String exclusao(@PathVariable Integer id){
+    public String excluir(@PathVariable Integer id){
 
-        emergenciaService.excluir(id);
+        try{
+            emergenciaService.excluir(id);
+            mensagem = "Exclusão da Emergência " + id + " realizada com sucesso!!!";
+            tipo = "alert-success";
+        }catch (Exception e){
+            mensagem = "Impossível realizar a exclusão da Emergência " + id + " realizada com sucesso!!!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/emergencia/lista";
     }

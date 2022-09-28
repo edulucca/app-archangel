@@ -15,6 +15,13 @@ pageEncoding="UTF-8"%>
     <h2>AppArchAngel</h2>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
+
+    <c:if test="${not empty mensagem}">
+        <div class="alert ${tipo}">
+            <strong>Informação</strong> ${mensagem}
+        </div>
+    </c:if>
+
     <h3>Classe: Requisitante</h3>
     <h4><a href="/requisitante">Novo</a></h4>
     <table class="table table-striped">

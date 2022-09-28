@@ -30,12 +30,16 @@ public class AmeacaAVidaController {
 
     @Autowired
     private VitimaService vitimaService;
-
+    private String mensagem;
+    private String tipo;
 
 
     @GetMapping(value="/ameacaavida/lista")
     public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
         model.addAttribute("listagem", ameacaAVidaService.obterList(usuario));
+
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "ameacaavida/lista";
     }
@@ -50,7 +54,14 @@ public class AmeacaAVidaController {
     @GetMapping(value = "/ameacaavida/{id}/excluir")
     public String exclusao(@PathVariable Integer id){
 
-        ameacaAVidaService.excluir(id);
+        try{
+            ameacaAVidaService.excluir(id);
+            mensagem = "Exclusão do Ameaça a Vida " + id + " realizada com sucesso!!!";
+            tipo = "alert-success";
+        }catch (Exception e){
+            mensagem = "Impossível realizar a exclusão do Ameaça a Vida " + id + " realizada com sucesso!!!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/ameacaavida/lista";
     }
@@ -70,6 +81,9 @@ public class AmeacaAVidaController {
         ameacaAVida.addVitima(objVitima);
 
         ameacaAVidaService.incluir(ameacaAVida);
+
+        mensagem = "Inclusão de Ameaça A Vida " + ameacaAVida.getNome() + " realizada com sucesso!!!";
+        tipo = "alert-success";
 
         return "redirect:/ameacaavida/lista";
     }

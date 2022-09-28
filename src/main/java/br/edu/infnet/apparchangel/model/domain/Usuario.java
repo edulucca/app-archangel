@@ -28,6 +28,10 @@ public class Usuario implements IPrinter{
     @JoinColumn(name = "idUsuario")
     private List<Emergencia> emergencias;
 
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private  List<Vitima> vitimas;
+
     public Usuario(String nome, String email, String senha) throws CpfInvalidoException {
         if(email == null){
             throw new CpfInvalidoException("Não é possível criar CPF nulo");

@@ -27,10 +27,14 @@ import java.util.*;
 public class PatrimonioController {
     @Autowired
     private PatrimonioService patrimonioService;
+    private String mensagem;
+    private String tipo;
 
     @GetMapping(value = "/patrimonio/lista")
     public String telaLista(Model model, @SessionAttribute("user") Usuario usuario) {
         model.addAttribute("listagem", patrimonioService.obterList(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "patrimonio/lista";
     }
@@ -38,7 +42,14 @@ public class PatrimonioController {
     @GetMapping(value = "/patrimonio/{id}/excluir")
     public String exclusao(@PathVariable Integer id) {
 
-        patrimonioService.excluir(id);
+        try{
+            patrimonioService.excluir(id);
+            mensagem = "Exclusão do Patrimônio " + id + " realizada com sucesso!!!";
+            tipo = "alert-success";
+        }catch (Exception e){
+            mensagem = "Impossível realizar a exclusão do Patrimônio " + id + " realizada com sucesso!!!";
+            tipo = "alert-danger";
+        }
 
         return "redirect:/patrimonio/lista";
     }
@@ -52,7 +63,11 @@ public class PatrimonioController {
     public String incluir(Patrimonio patrimonio, @SessionAttribute("user") Usuario usuario){
         patrimonio.setUsuario(usuario);
 
+        mensagem = "Inclusão do Patromônio " + patrimonio.getNome() + " realizada com sucesso!!!";
+        tipo = "alert-success";
+
         patrimonioService.incluir(patrimonio);
+
         return "redirect:/patrimonio/lista";
     }
 }

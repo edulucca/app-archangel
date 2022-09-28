@@ -10,7 +10,10 @@ pageEncoding="UTF-8"%>
     <title>App Archangel</title>
 </head>
 <body>
+<c:set var="ativaBotao" value=""/>
+
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
+
 <div class="container mt-3">
     <h2>Cadastrar Emergência</h2>
     <form action="/emergencia/incluir" method="POST">
@@ -30,25 +33,40 @@ pageEncoding="UTF-8"%>
         </div>
 
         <div class="mb-3 mt-3">
-            <label>Requisitante:</label>
-            <select class="form-select" name="status">
-                <c:forEach var="r" items="${requisitantes}">
-                    <option>${r.nome}</option>
-                </c:forEach>
-            </select>
+            <c:if test="${not empty requisitantes}">
+                <label>Requisitante:</label>
+                <select class="form-select" name="requisitante">
+                    <c:forEach var="r" items="${requisitantes}">
+                        <option value="${r.id}">${r.nome}</option>
+                    </c:forEach>
+                </select>
+            </c:if>
+
+            <c:if test="${empty requisitantes}">
+                <label>Não existem requisitantes cadastrados</label>
+                <c:set var="ativaBotao" value="disabled"/>
+            </c:if>
         </div>
 
-        <label>Crises:</label>
+
         <div class="mb-3 mt-3">
-            <c:forEach var="c" items="${crises}">
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" name="crises"
-                               value="${c}">${c.nome}</label>
-                </div>
-            </c:forEach>
+            <c:if test="${not empty crises}">
+                <label>Crises:</label>
+                <c:forEach var="c" items="${crises}">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox" name="crises"
+                                   value="${c.id}">${c.nome}</label>
+                    </div>
+                </c:forEach>
+            </c:if>
+
+            <c:if test="${empty crises}">
+                <label>Não existem Crises cadastradas</label>
+                <c:set var="ativaBotao" value="disabled"/>
+            </c:if>
         </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" class="btn btn-primary" ${ativaBotao}>Cadastrar</button>
     </form>
 </div>
 </body>

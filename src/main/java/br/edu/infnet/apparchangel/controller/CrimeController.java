@@ -28,9 +28,16 @@ public class CrimeController {
 
     @Autowired
     private CrimeService crimeService;
+    private String mensagem;
+    private String tipo;
+
     @GetMapping(value="/crime/lista")
     public String telaLista(Model model, @SessionAttribute("user")Usuario usuario){
         model.addAttribute("listagem", crimeService.obterList(usuario));
+
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
+
         return "crime/lista";
     }
 
@@ -45,13 +52,24 @@ public class CrimeController {
         crime.setUsuario(usuario);
         crimeService.incluir(crime);
 
+        mensagem = "Inclusão do Crime " + crime.getNome() + " realizada com sucesso!!!";
+        tipo = "alert-success";
+
         return "redirect:/crime/lista";
     }
 
     @GetMapping(value = "/crime/{id}/excluir")
     public String exclusao(@PathVariable Integer id){
 
-        crimeService.excluir(id);
+        try{
+            crimeService.excluir(id);
+            mensagem = "Exclusão do Crime " + id + " realizada com sucesso!!!";
+            tipo = "alert-success";
+        }catch (Exception e){
+            mensagem = "Impossível realizar a exclusão do Crime " + id + " realizada com sucesso!!!";
+            tipo = "alert-danger";
+        }
+
 
         return "redirect:/crime/lista";
     }

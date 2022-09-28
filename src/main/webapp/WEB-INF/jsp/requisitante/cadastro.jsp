@@ -12,23 +12,24 @@ pageEncoding="UTF-8"%>
 <body>
 <c:import url="/WEB-INF/jsp/menu.jsp"/>
 <div class="container mt-3">
-  <h2>Cadastramento de Requisitante</h2>
-  <form action="/requisitante/incluir" method="POST">
-    <div class="mb-3 mt-3">
-        <label>Nome:</label>
-        <input type="text" class="form-control" placeholder="Entre com seu nome" name="nome">
-      </div>
-    <div class="mb-3 mt-3">
-      <label for="cpf">CPF:</label>
-      <input type="text" class="form-control" maxlength="11" placeholder="Entre com seu CPF" name="cpf">
-    </div>
-    <div class="mb-3">
-      <label for="telefone">Telefone:</label>
-      <input type="tel" class="form-control" placeholder="Entre com seu número de telefone" name="telefone">
-    </div>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-  </form>
+    <h2>Cadastramento de Requisitante</h2>
+    <form action="/requisitante/incluir" method="POST">
+        <div class="mb-3 mt-3">
+            <label>Nome:</label>
+            <input type="text" class="form-control" placeholder="Entre com seu nome" name="nome">
+        </div>
+        <div class="mb-3 mt-3">
+            <label for="cpf">CPF:</label>
+            <input type="text" class="form-control" maxlength="11" placeholder="Entre com seu CPF" name="cpf">
+        </div>
+        <div class="mb-3">
+            <label for="telefone">Telefone:</label>
+            <input type="tel" class="form-control" placeholder="Entre com seu número de telefone" name="telefone">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
 </div>
 </body>
 </html>

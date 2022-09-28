@@ -15,8 +15,9 @@ public class Vitima implements IPrinter {
     private String idade;
 
     @ManyToOne
-    @JoinColumn(name = "idAmeacaavida")
-    private AmeacaAVida ameacaAVida;
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
 
     public Vitima(){
     }
@@ -24,6 +25,14 @@ public class Vitima implements IPrinter {
         this.nome = nome;
         this.nomeDaMae = nomeDaMae;
         this.idade = idade;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getId() {

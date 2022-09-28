@@ -8,5 +8,5 @@ import java.util.Collection;
 
 public interface PatrimonioRepository extends CrudRepository<Patrimonio, Integer> {
     @Query("from Patrimonio p where p.usuario.id = :idUsuario")
-    Collection<Patrimonio> findAll(Integer usuario);
+    Collection<Patrimonio> findAll(Integer idUsuario);
 }

@@ -26,9 +26,13 @@ import java.util.*;
 public class RequisitanteController {
     @Autowired
     private RequisitanteService requisitanteService;
+    private String mensagem;
+    private String tipo;
     @GetMapping(value="/requisitante/lista")
     public String telaLista(Model model, @SessionAttribute("user") Usuario usuario){
         model.addAttribute("listagem", requisitanteService.obterList(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("tipo", tipo);
 
         return "requisitante/lista";
     }
@@ -36,7 +40,16 @@ public class RequisitanteController {
     @GetMapping(value = "/requisitante/{id}/excluir")
     public String exclusao(@PathVariable Integer id){
 
-        requisitanteService.excluir(id);
+        //TODO: Fazer este try/catch em todas as outras classes
+        try{
+            requisitanteService.excluir(id);
+            mensagem = "Exclusão do Requisitante " + id + " realizada com sucesso!!!";
+            tipo = "alert-success";
+        }catch (Exception e){
+            mensagem = "Impossível realizar a exclusão do Requisitante " + id + " realizada com sucesso!!!";
+            tipo = "alert-danger";
+        }
+
 
         return "redirect:/requisitante/lista";
     }
@@ -50,6 +63,10 @@ public class RequisitanteController {
     public String incluir(Requisitante requisitante, @SessionAttribute("user")Usuario usuario){
         requisitante.setUsuario(usuario);
         requisitanteService.incluir(requisitante);
+
+        mensagem = "Inclusão do Requisitante " + requisitante.getNome() + " realizada com sucesso!!!";
+        tipo = "alert-success";
+
         return "redirect:/requisitante/lista";
     }
 }

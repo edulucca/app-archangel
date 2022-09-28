@@ -1,6 +1,7 @@
 package br.edu.infnet.apparchangel.model.test;
 
 import br.edu.infnet.apparchangel.controller.VitimaController;
+import br.edu.infnet.apparchangel.model.domain.Usuario;
 import br.edu.infnet.apparchangel.model.domain.Vitima;
 import br.edu.infnet.apparchangel.model.service.VitimaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class VitimaTeste implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
 
         String dir = "F:/Projetos_InfNet/app-archangel/dev/";
         String arq = "vitimas.txt";
@@ -36,6 +39,8 @@ public class VitimaTeste implements ApplicationRunner {
                     String[] campos = linha.split(";");
 
                     Vitima v1 = new Vitima(campos[0], campos[1], campos[2]);
+                    v1.setUsuario(usuario);
+
                     vitimaService.incluir(v1);
 
                     linha = leitor.readLine();

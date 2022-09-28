@@ -15,7 +15,19 @@ pageEncoding="UTF-8"%>
 
 <div class="container mt-3">
 
+    <h2>AppArchAngel</h2>
+    <p>Software para gerar alertas e gerenciar emergências</p>
+
+    <c:if test="${not empty mensagem}">
+        <div class="alert ${tipo}">
+            <strong>Informação</strong> ${mensagem}
+        </div>
+    </c:if>
+
+
     <h3>Cadastramento de usuários</h3>
+    <h4><a href="/usuario">Novo</a></h4>
+
     <table class="table table-striped">
         <thead>
         <tr>

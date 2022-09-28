@@ -16,6 +16,13 @@ pageEncoding="UTF-8"%>
     <h2>AppArchAngel</h2>
     <p>Software para gerar alertas e gerenciar emergências</p>
 
+    <c:if test="${not empty mensagem}">
+        <div class="alert ${tipo}">
+            <strong>Informação</strong> ${mensagem}
+        </div>
+    </c:if>
+
+
     <h3>Classe: Crime</h3>
     <h4><a href="/crime">Novo</a></h4>
     <table class="table table-striped">
@@ -31,20 +38,20 @@ pageEncoding="UTF-8"%>
         </tr>
         </thead>
         <tbody>
-            <c:forEach var="c" items="${listagem}">
-                <tr>
-                    <td>${c.id}</td>
-                    <td>${c.nrVitimas}</td>
-                    <td>${c.nrSuspeitos}</td>
-                    <td>${c.armaBranca}</td>
-                    <td>${c.armaDeFogo}</td>
-                    <td><a href="/crime/${c.id}/excluir">Excluir</a></td>
-                </tr>
-            </c:forEach>
+        <c:forEach var="c" items="${listagem}">
+            <tr>
+                <td>${c.id}</td>
+                <td>${c.nrVitimas}</td>
+                <td>${c.nrSuspeitos}</td>
+                <td>${c.armaBranca}</td>
+                <td>${c.armaDeFogo}</td>
+                <td><a href="/crime/${c.id}/excluir">Excluir</a></td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 
-    
+
 </div>
 </body>
 </html>
